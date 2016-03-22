@@ -1,0 +1,27 @@
+<ion-navbar *navbar>
+    <button menuToggle start>
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Settings</ion-title>
+</ion-navbar>
+
+<ion-content padding class="info">
+    <ion-list>
+        <ion-item>
+            <ion-toggle checked="false"></ion-toggle>
+            <ion-label>
+                I'm on vacation
+            </ion-label>
+        </ion-item>
+        <ion-item>
+            Change weekly working hours
+        </ion-item>
+        <ion-item>
+            Update Redmine API key
+        </ion-item>
+    </ion-list>
+
+    <button primary block (click)="save($event)">
+        SAVE
+    </button>
+</ion-content>

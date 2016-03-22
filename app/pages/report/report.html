@@ -1,0 +1,20 @@
+<ion-navbar *navbar>
+    <button menuToggle start>
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Redmine report</ion-title>
+
+    <ion-buttons end>
+        <button (click)="refresh($event)">
+            <ion-icon name="refresh"></ion-icon>
+        </button>
+        <button (click)="settings($event)">
+            <ion-icon name="more"></ion-icon>
+        </button>
+    </ion-buttons>
+</ion-navbar>
+
+<ion-content padding class="info">
+    <p>Logged hours for this week: 42</p>
+
+</ion-content>

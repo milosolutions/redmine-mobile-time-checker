@@ -1,0 +1,20 @@
+<ion-navbar hideBackButton *navbar>
+    <button menuToggle start>
+        <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Info</ion-title>
+</ion-navbar>
+
+<ion-content padding class="info">
+    <p class="avatar">
+        <img src="img/placeholder.jpg"/>
+    </p>
+
+    <h2>
+        Hallo, doge
+    </h2>
+    <p>Logged hours for this week: 42</p>
+
+    <button block (click)="openReport($event)">See full report</button>
+
+</ion-content>
