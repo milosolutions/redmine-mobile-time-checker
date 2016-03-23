@@ -1,8 +1,19 @@
 .info {
   text-align: center;
+  h2{
+    margin: 1.6rem 0;
+  }
+  .loading {
+    height: 134px;
+    ion-spinner {
+      position: relative;
+      top: calc(50% - 28px);
+      height: 56px;
+      width: 56px;
+    }
+  }
 }
 
-.avatar > img {
-  height: 150px;
-  border-radius: 50%;
+.avatar {
+  height: 80px;
 }

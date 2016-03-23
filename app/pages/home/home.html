@@ -6,14 +6,26 @@
 </ion-navbar>
 
 <ion-content padding class="info">
-    <p class="avatar">
-        <img src="img/placeholder.jpg"/>
-    </p>
+    <div *ngIf="!name" class="loading">
+        <ion-spinner></ion-spinner>
+    </div>
+    <div *ngIf="name">
+        <p class="avatar">
+            <img src={{src}}/>
+        </p>
 
-    <h2>
-        Hallo, doge
-    </h2>
+        <h2>
+            Hello, {{name}}
+        </h2>
+    </div>
     <p>Logged hours for this week: {{hours}}</p>
-
+    <ion-list *ngIf="projects">
+        <ion-list-header>
+            Projects
+        </ion-list-header>
+        <ion-item *ngFor="#project of projects">
+            {{project}}
+        </ion-item>
+    </ion-list>
     <button block (click)="openReport($event)">See full report</button>
 </ion-content>
