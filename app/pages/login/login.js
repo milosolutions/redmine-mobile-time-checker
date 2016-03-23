@@ -17,7 +17,14 @@ export class LoginPage {
 
     login(event) {
         this.local.set('key', this.key);
-        // used push instead of setRoot in order to get 'back' button
+
+        // configuring default setting for working hours per week
+        this.local.set('hours_week', 40);
+
+        // for testing purpose setting up fake hours for current and last week
+        this.local.set('hours_last', 38);
+        this.local.set('hours_curr', 42);
+
         this.nav.push(HomePage, {
             key: this.key
         });

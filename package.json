@@ -40,13 +40,10 @@
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard",
-    "cordova-plugin-console"
+    "cordova-plugin-console",
+    "cordova-plugin-calendar"
   ],
   "cordovaPlatforms": [
-    {
-      "platform": "android",
-      "version": "5.1.0",
-      "locator": "android@5.1.0"
-    }
+    "android"
   ]
 }

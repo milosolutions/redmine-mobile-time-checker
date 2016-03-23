@@ -1,0 +1,29 @@
+.grid-page {
+
+  .grid {
+    background-color: #F9FAFB;
+    ion-col {
+      padding: 0;
+      border: solid #ddd;
+      border-width: 1px 0 0 1px;
+      border-radius: 0;
+      div {
+        min-height: 30px;
+        text-align: center;
+        padding: 5px;
+      }
+      &:last-child {
+        border-width: 1px 1px 0 1px;
+      }
+    }
+
+    ion-row {
+      padding: 0;
+      &:last-child {
+        ion-col {
+          border-bottom: 1px solid #ddd;
+        }
+      }
+    }
+  }
+}

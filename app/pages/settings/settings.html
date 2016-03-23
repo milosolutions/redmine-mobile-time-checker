@@ -7,18 +7,9 @@
 
 <ion-content padding class="info">
     <ion-list>
-        <ion-item>
-            <ion-toggle checked="false"></ion-toggle>
-            <ion-label>
-                I'm on vacation
-            </ion-label>
-        </ion-item>
-        <ion-item>
-            Change weekly working hours
-        </ion-item>
-        <ion-item>
-            Update Redmine API key
-        </ion-item>
+        <button ion-item *ngFor="#s of settings" (click)="update(s)">
+            {{s.title}}
+        </button>
     </ion-list>
 
     <button primary block (click)="save($event)">
