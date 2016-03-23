@@ -5,23 +5,20 @@ import { HomePage } from './pages/home/home.js';
 import { ReportPage } from './pages/report/report.js';
 import { SettingsPage } from './pages/settings/settings.js';
 import { Injectable, Injector } from 'angular2/core';
-import { RedmineApi } from './providers/redmine-api/redmine-api.js'
 
 @App({
     templateUrl: 'build/app.html',
-    providers: [RedmineApi],
     config: {} // http://ionicframework.com/docs/v2/api/config/Config/
 })
 export class MyApp {
     static get parameters() {
-        return [[IonicApp], [Platform], [RedmineApi], [MenuController]];
+        return [[IonicApp], [Platform], [MenuController]];
     }
 
-    constructor(app, platform,  _redmineService, menu) {
+    constructor(app, platform, menu) {
         this.app = app;
         this.platform = platform;
         this.menu = menu;
-        this._redminer = _redmineService;
         this.initializeApp();
 
         this.pages = [
@@ -41,14 +38,6 @@ export class MyApp {
 
     initializeApp() {
         this.platform.ready().then(() => {
-            // Okay, let's pass key parameter this way
-            let key = this.local.get('key')._result;
-            if (key != null) {
-                let nav = this.app.getComponent('nav');
-                nav.setRoot(HomePage, {
-                    key: key
-                });
-            }
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
             StatusBar.styleDefault();
