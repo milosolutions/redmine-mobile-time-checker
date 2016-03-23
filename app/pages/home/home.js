@@ -31,16 +31,11 @@ export class HomePage {
         });
     }
 
-    onPageWillEnter() {
-        this.hours = this.local.get('hours_curr')._result;
-    }
+    hoursAlert(){
+        let vacation = this.local.get('vacation')._result;
+        vacation = new Date(vacation) > new Date();
 
-    onPageDidEnter(){
-        if (this.local.get('key')._result != this.key) {
-            this.key = this.local.get('key')._result;
-            this.loadInfo();
-        }
-        if (this.last < this.week){
+        if (this.last < this.week && !vacation){
             let alert = Alert.create({
                 title: 'Warning',
                 message: 'You worked '+ this.last + ' hours last week, while defined working hours per week is '+this.week + ' hours!',
@@ -63,6 +58,18 @@ export class HomePage {
             });
             this.nav.present(alert);
         }
+    }
+
+    onPageWillEnter() {
+        this.hours = this.local.get('hours_curr')._result;
+    }
+
+    onPageDidEnter(){
+        if (this.local.get('key')._result != this.key) {
+            this.key = this.local.get('key')._result;
+            this.loadInfo();
+        }
+        this.hoursAlert();
     }
 
     openReport(event){
