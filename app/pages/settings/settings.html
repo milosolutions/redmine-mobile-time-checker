@@ -7,9 +7,16 @@
 
 <ion-content padding class="info">
     <ion-list>
-        <button ion-item *ngFor="#s of settings" (click)="update(s)">
-            {{s.title}}
-        </button>
+        <ion-item (click)="update(settings[0])">
+            <ion-label>{{settings[0].title}}</ion-label>
+            <ion-toggle [(ngModel)]="settings[0].toggled" checked="settings[0].toggled"></ion-toggle>
+        </ion-item>
+        <ion-item *ngFor="#s of settings | slice:1" (click)="update(s)">
+            <ion-label>{{s.title}}</ion-label>
+            <ion-note item-right>
+                {{s.current}}
+            </ion-note>
+        </ion-item>
     </ion-list>
 
     <button primary block (click)="save($event)">

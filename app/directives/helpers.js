@@ -2,6 +2,10 @@ import { Alert } from 'ionic-angular'
 
 export function runSettingsAlert(setting, nav, local) {
     let type = setting.name == 'vacation' ? 'date' : 'text';
+    if (setting.name == 'vacation' && setting.toggled){
+        local.remove(setting.name);
+        return
+    }
     let prompt = Alert.create({
         message: setting.message,
         inputs: [
@@ -15,15 +19,27 @@ export function runSettingsAlert(setting, nav, local) {
             {
                 text: 'Cancel',
                 handler: data => {
-                    console.log('Cancel clicked');
+                    if (setting.name == 'vacation')
+                        setting.toggled = false;
                 }
             },
             {
                 text: 'Save',
                 handler: data => {
+                    if (setting.name == 'vacation'){
+                        let validate = new Date(data[setting.name]) > new Date();
+                        if (!validate) {
+                            setting.toggled = false;
+                            return
+                        }
+                    } else if (setting.name == 'hours_week'){
+                        let reg = /^\d+(.\d+)?$/;
+                        if (!reg.test(data[setting.name])){
+                            return
+                        }
+                        setting.current = data[setting.name];
+                    }
                     local.set(setting.name, data[setting.name]);
-                    if (setting.name == 'vacation')
-                        console.log(data)
                 }
             }
         ]
