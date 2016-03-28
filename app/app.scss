@@ -1,0 +1,14 @@
+ion-navbar {
+  .toolbar-background {
+    background: map-get($colors, primary);
+  }
+  .bar-button-default {
+    color: #fff;
+    &:hover {
+      color: #d66907!important;
+    }
+  }
+  .toolbar-title {
+    color: #fff;
+  }
+}
