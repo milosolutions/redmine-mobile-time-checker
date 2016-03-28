@@ -38,15 +38,16 @@ export class HomePage {
         if (this.last < this.week && !vacation){
             let alert = Alert.create({
                 title: 'Warning',
-                message: 'You worked '+ this.last + ' hours last week, while defined working hours per week is '+this.week + ' hours!',
+                message: 'Your last week hours is less than defined working hours per week',
                 buttons: [
                     {
-                        text: 'Confirm',
-                        handler: () => {
-                        }
+                        text: 'CONFIRM',
+                        role: 'cancel',
+                        cssClass: 'fa fa-check confirm',
                     },
                     {
-                        text: 'I\'m on vacation!',
+                        text: 'ON VACATION',
+                        cssClass: 'fa fa-ban dismiss',
                         handler: () => {
                             runSettingsAlert({
                                 name: 'vacation',
@@ -56,6 +57,7 @@ export class HomePage {
                     }
                 ]
             });
+            alert.setCssClass('hours-alert');
             this.nav.present(alert);
         }
     }
