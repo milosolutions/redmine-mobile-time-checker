@@ -14,7 +14,8 @@
   "scripts": {
     "serve": "ionic serve -c",
     "run": "ionic run android",
-    "build": "ionic build android"
+    "build": "ionic build android",
+    "sign": "jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ./platforms/android/RedmineApp.keystore ./platforms/android/build/outputs/apk/android-release-unsigned.apk RedmineApp"
   },
   "devDependencies": {
     "babel-core": "6.5.2",
