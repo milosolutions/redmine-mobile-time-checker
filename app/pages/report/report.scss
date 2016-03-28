@@ -19,9 +19,25 @@
 
     ion-row {
       padding: 0;
+      font-size: 15px;
+      &.header {
+        font-weight: bold;
+      }
+      &.project-row {
+        font-style: italic;
+        color: #777;
+      }
+      ion-col{
+        div:not(.name):not(.issue){
+          font-weight: bold;
+          font-size: 13px;
+        }
+      }
       &:last-child {
         ion-col {
           border-bottom: 1px solid #ddd;
+          color: #000;
+          font-weight: bold;
         }
       }
     }

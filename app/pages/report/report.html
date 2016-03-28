@@ -15,31 +15,64 @@
 </ion-navbar>
 
 <ion-content padding class="info grid-page">
+    <div padding>
+        <ion-segment [(ngModel)]="period" (change)="getReport()">
+            <ion-segment-button value="lw">
+                Last Week
+            </ion-segment-button>
+            <ion-segment-button value="w">
+                This Week
+            </ion-segment-button>
+        </ion-segment>
+    </div>
+    <div *ngIf="loading" class="loading">
+        <ion-spinner></ion-spinner>
+    </div>
     <p>Logged hours for this week: {{hours}}</p>
-    <div class="grid">
-        <ion-row class="header">
-            <ion-col width-10><div>Project</div></ion-col>
-            <ion-col width-10><div>Issue</div></ion-col>
-            <ion-col width-10><div>Mo</div></ion-col>
-            <ion-col width-10><div>Tu</div></ion-col>
-            <ion-col width-10><div>We</div></ion-col>
-            <ion-col width-10><div>Th</div></ion-col>
-            <ion-col width-10><div>Fr</div></ion-col>
-            <ion-col width-10><div>Sa</div></ion-col>
-            <ion-col width-10><div>Su</div></ion-col>
-            <ion-col width-10><div>Total</div></ion-col>
-        </ion-row>
-        <ion-row *ngFor="#item of data">
-            <ion-col width-10><div>{{item.project}}</div></ion-col>
-            <ion-col width-10><div>{{item.issue}}</div></ion-col>
-            <ion-col width-10><div>{{item.mo}}</div></ion-col>
-            <ion-col width-10><div>{{item.tu}}</div></ion-col>
-            <ion-col width-10><div>{{item.we}}</div></ion-col>
-            <ion-col width-10><div>{{item.th}}</div></ion-col>
-            <ion-col width-10><div>{{item.fr}}</div></ion-col>
-            <ion-col width-10><div>{{item.sa}}</div></ion-col>
-            <ion-col width-10><div>{{item.su}}</div></ion-col>
-            <ion-col width-10><div>{{item.total}}</div></ion-col>
-        </ion-row>
+    <div *ngIf="!loading" class="loading">
+        <div class="grid">
+            <ion-row class="header">
+                <ion-col width-10><div>Project</div></ion-col>
+                <ion-col width-10><div>Issue</div></ion-col>
+                <ion-col width-10><div>Mo</div></ion-col>
+                <ion-col width-10><div>Tu</div></ion-col>
+                <ion-col width-10><div>We</div></ion-col>
+                <ion-col width-10><div>Th</div></ion-col>
+                <ion-col width-10><div>Fr</div></ion-col>
+                <ion-col width-10><div>Sa</div></ion-col>
+                <ion-col width-10><div>Su</div></ion-col>
+                <ion-col width-10><div>Total</div></ion-col>
+            </ion-row>
+            <ion-row *ngFor="#item of data" [ngClass]="item.project!='' ? 'project-row' : ''">
+                <ion-col width-10><div class="name">{{item.project}}</div></ion-col>
+                <ion-col width-10>
+                    <div *ngIf="item.issue" class="issue">{{'#'+item.issue}}</div>
+                </ion-col>
+                <ion-col width-10>
+                    <div>{{item['1']}}</div>
+                </ion-col>
+                <ion-col width-10>
+                    <div>{{item['2']}}</div>
+                </ion-col>
+                <ion-col width-10>
+                    <div>{{item['3']}}</div>
+                </ion-col>
+                <ion-col width-10>
+                    <div>{{item['4']}}</div>
+                </ion-col>
+                <ion-col width-10>
+                    <div>{{item['5']}}</div>
+                </ion-col>
+                <ion-col width-10>
+                    <div>{{item['6']}}</div>
+                </ion-col>
+                <ion-col width-10>
+                    <div>{{item['0']}}</div>
+                </ion-col>
+                <ion-col width-10>
+                    <div>{{item.total}}</div>
+                </ion-col>
+            </ion-row>
+        </div>
     </div>
 </ion-content>
