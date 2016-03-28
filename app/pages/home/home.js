@@ -28,6 +28,7 @@ export class HomePage {
             this.name = data.user.firstname;
             this.src = this.get_gravatar(data.user.mail);
             this.projects = data.user.memberships.map(membership => membership.project.name);
+            this.local.set('user_id', data.user.id);
         });
     }
 
