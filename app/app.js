@@ -28,6 +28,7 @@ export class MyApp {
         ];
 
         this.local = new Storage(LocalStorage);
+        this.local.set('display-alert', true);
         let hasKey = this.local.get('key')._result != null;
         if (!hasKey) {
             this.rootPage = LoginPage;

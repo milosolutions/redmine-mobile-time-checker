@@ -44,6 +44,9 @@ export class HomePage {
                         text: 'CONFIRM',
                         role: 'cancel',
                         cssClass: 'fa fa-check confirm',
+                        handler: () => {
+                            this.local.remove('display-alert');
+                        }
                     },
                     {
                         text: 'ON VACATION',
@@ -52,7 +55,8 @@ export class HomePage {
                             runSettingsAlert({
                                 name: 'vacation',
                                 message: 'Please specify end of vacation period'
-                            }, this.nav, this.local)
+                            }, this.nav, this.local);
+                            this.local.remove('display-alert');
                         }
                     }
                 ]
@@ -71,7 +75,9 @@ export class HomePage {
             this.key = this.local.get('key')._result;
             this.loadInfo();
         }
-        this.hoursAlert();
+        if (this.local.get('display-alert')._result !== null) {
+            this.hoursAlert();
+        }
     }
 
     openReport(event){
