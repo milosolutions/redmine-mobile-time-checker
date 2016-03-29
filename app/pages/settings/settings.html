@@ -6,7 +6,9 @@
 </ion-navbar>
 
 <ion-content padding class="info">
-    <ion-list>
+    <div class="bg-small" style="background-image: url(img/placeholder.png)">
+    </div>
+    <ion-list class="settings">
         <ion-item (click)="update(settings[0])">
             <ion-label>{{settings[0].title}}</ion-label>
             <ion-toggle [(ngModel)]="settings[0].toggled" checked="settings[0].toggled"></ion-toggle>
@@ -18,8 +20,4 @@
             </ion-note>
         </ion-item>
     </ion-list>
-
-    <button primary round (click)="save($event)">
-        SAVE
-    </button>
 </ion-content>

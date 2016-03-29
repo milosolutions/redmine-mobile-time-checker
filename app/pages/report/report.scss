@@ -1,3 +1,67 @@
+.bg-small {
+  margin: -16px;
+  margin-bottom: initial;
+  height: 17rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50% 75%;
+}
+
+.report-info {
+  .navigation {
+    height: 13rem;
+    ion-icon{
+      display: block;
+    }
+    .segment-button {
+      height: 8rem;
+      border: none;
+      text-transform: none;
+      opacity: 1;
+      color: rgba(255,255,255,0.35);
+      transition: color 0.75s ease;
+      &:hover{
+        background: transparent;
+        transition: color 0.75s ease;
+        color: #fff;
+      }
+    }
+    .info.segment-button{
+      height: 11rem;
+      color: #fff;
+      font-size: 1.75rem;
+      .week {
+        font-size: 6rem;
+        line-height: 3.5rem;
+      }
+      .dates{
+        font-size: 1rem;
+        color: rgba(255,255,255,0.85);
+      }
+      &:hover {
+        cursor: default;
+      }
+    }
+  }
+
+  .hours{
+    height: 4rem;
+    font-size: 1.25rem;
+    line-height: 1.25rem;
+    color: #fff;
+    div {
+      position: relative;
+      height: 4rem;
+      padding-top: 2.25rem;
+      top: -2rem;
+      box-shadow: 0 -2px 0 rgba(234, 137, 50,0.75);
+      font-weight: bold;
+      display: inline-block;
+      color: map-get($colors, primary);
+    }
+  }
+}
+
 .grid-page {
 
   .grid {

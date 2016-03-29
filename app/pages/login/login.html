@@ -3,10 +3,13 @@
         <img src="img/milosolutions.png"/>
     </p>
     <ion-item clearInput>
+        <ion-input type="text" [(ngModel)]="url" placeholder="Redmine url"></ion-input>
+    </ion-item>
+    <ion-item clearInput>
         <ion-input type="text" [(ngModel)]="key" placeholder="Redmine API key"></ion-input>
     </ion-item>
     <p>
-        <button round light (click)="login($event)" [disabled]="key==''">Next</button>
+        <button round light (click)="login($event)" [disabled]="!key">Next</button>
     </p>
 
 </ion-content>
