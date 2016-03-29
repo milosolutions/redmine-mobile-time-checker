@@ -1,9 +1,12 @@
 .logo {
   text-align: center;
   padding: 90px 0;
+  max-width: 60%;
+  margin: auto;
 }
 
 .login-page ion-content {
-  background: linear-gradient(-20deg, #333, rgba(255, 188, 129, 0.682353));
+  //background: linear-gradient(-20deg, rgba(59,59,59,0.6), rgba(255,124,0,0.6));
+  background-image: url('../../img/login_bg.png');
   text-align: center;
 }

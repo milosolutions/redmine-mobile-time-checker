@@ -1,3 +1,8 @@
+ion-page {
+  font-family: 'Titillium Web', sans-serif;
+  font-weight: normal;
+}
+
 ion-navbar {
   .toolbar-background {
     background: map-get($colors, primary);

@@ -42,10 +42,6 @@ export class SettingsPage {
         ];
     }
 
-    save(event) {
-        this.nav.pop();
-    }
-
     update(setting) {
         runSettingsAlert(setting, this.nav, this.local);
     }

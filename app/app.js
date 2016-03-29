@@ -33,7 +33,7 @@ export class MyApp {
         if (!hasKey) {
             this.rootPage = LoginPage;
         } else {
-            this.rootPage = HomePage;
+            this.rootPage = ReportPage;
         }
     }
 
