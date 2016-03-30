@@ -1,16 +1,23 @@
 .bg-small {
   margin: -16px;
-  margin-bottom: initial;
-  height: 17rem;
+  margin-bottom: 2rem;
+  height: 19rem;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: 50% 75%;
+  background-position: 50% 100%;
+}
+
+ion-title {
+  text-align: center;
 }
 
 .report-info {
   .navigation {
-    height: 13rem;
+    height: 14rem;
     ion-icon{
+      line-height: 2rem;
+      padding-top: 2rem;
+      font-size: 2rem;
       display: block;
     }
     .segment-button {
@@ -18,6 +25,9 @@
       border: none;
       text-transform: none;
       opacity: 1;
+      line-height: 2rem;
+      font-size: 1.4rem;
+      font-weight: 300;
       color: rgba(255,255,255,0.35);
       transition: color 0.75s ease;
       &:hover{
@@ -25,18 +35,24 @@
         transition: color 0.75s ease;
         color: #fff;
       }
+      &.segment-activated{
+        background-color: transparent;
+      }
     }
     .info.segment-button{
       height: 11rem;
       color: #fff;
-      font-size: 1.75rem;
+      font-size: 2rem;
+      line-height: 2.75rem;
+      padding-top: 1rem;
       .week {
-        font-size: 6rem;
-        line-height: 3.5rem;
+        font-size: 4.5rem;
+        line-height: 4.5rem;
+        font-weight: 400;
       }
       .dates{
-        font-size: 1rem;
-        color: rgba(255,255,255,0.85);
+        font-size: 1.15rem;
+        color: #afb1ca;
       }
       &:hover {
         cursor: default;
@@ -46,15 +62,16 @@
 
   .hours{
     height: 4rem;
-    font-size: 1.25rem;
-    line-height: 1.25rem;
+    font-size: 1.15rem;
+    line-height: 1.15rem;
     color: #fff;
+    font-weight: 300;
     div {
       position: relative;
       height: 4rem;
       padding-top: 2.25rem;
       top: -2rem;
-      box-shadow: 0 -2px 0 rgba(234, 137, 50,0.75);
+      box-shadow: 0 -0.15rem 0 #fe0000;
       font-weight: bold;
       display: inline-block;
       color: map-get($colors, primary);
@@ -62,47 +79,77 @@
   }
 }
 
-.grid-page {
+.report-page{
+  padding: 15px 0;
+  scroll-content {
+    padding: 16px 0;
+  }
+}
+ion-list {
+  border-top: 1px solid #c8c7cc;
 
-  .grid {
-    background-color: #F9FAFB;
-    ion-col {
-      padding: 0;
-      border: solid #ddd;
-      border-width: 1px 0 0 1px;
-      border-radius: 0;
-      div {
-        min-height: 30px;
-        text-align: center;
-        padding: 5px;
+  .item {
+    border-bottom: 1px solid #c8c7cc;
+    &.item-stable {
+      .day {
+        color: map-get($colors, primary);
+        font-weight: 600;
       }
-      &:last-child {
-        border-width: 1px 1px 0 1px;
+      .day-hours{
+        float: right;
       }
     }
+  }
 
-    ion-row {
-      padding: 0;
-      font-size: 15px;
-      &.header {
-        font-weight: bold;
-      }
-      &.project-row {
-        font-style: italic;
-        color: #777;
-      }
-      ion-col{
-        div:not(.name):not(.issue){
-          font-weight: bold;
-          font-size: 13px;
+  .item-inner {
+    border-bottom: none;
+  }
+
+  .item.item-accordion {
+    line-height: 3rem;
+    height: 6.5rem;
+    padding-top: 0;
+    padding-bottom: 0;
+    transition: 0.09s all linear;
+    background-color: #f9f9f9;
+    &.ng-hide {
+      line-height: 0px;
+    }
+    &.ng-hide-add, &.ng-hide-remove{
+      display: block !important;
+    }
+
+    .info, .hours {
+      display: inline-block;
+    }
+
+    .info {
+      width: 70%;
+      text-align: left;
+      height: 100%;
+      vertical-align: middle;
+      p {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        line-height: 2.5rem;
+        &.header {
+          color: #222;
+          font-size: 1.6rem;
         }
       }
-      &:last-child {
-        ion-col {
-          border-bottom: 1px solid #ddd;
-          color: #000;
-          font-weight: bold;
-        }
+    }
+    .hours {
+      text-align: right;
+      float: right;
+      p {
+        line-height: 1.75rem;
+      }
+      .issue-id {
+        background-color: #ebebeb;
+        padding: 0.5rem;
+        line-height: 2.5rem;
+        position: relative;
+        top: -0.25rem;
       }
     }
   }
