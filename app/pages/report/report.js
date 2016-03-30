@@ -85,7 +85,14 @@ export class ReportPage {
                     let group = this.daygroups[day-1];
                     group.hours += entry.hours;
                     total += Number(entry.hours);
-                    group.issues.push({project: entry.project.name, id: entry.issue.id, hours: entry.hours, subject: ''})
+                    let filter = group.issues.filter(issue => issue.id == entry.issue.id);
+                    if (filter.length == 0){
+                        group.issues.push({project: entry.project.name, id: entry.issue.id, hours: entry.hours, subject: ''})
+                    } else {
+                        let index = group.issues.indexOf(filter[0]);
+                        console.log(group.issues[index].id, day);
+                        group.issues[index].hours += entry.hours;
+                    }
                 });
                 this.hours = total;
                 //let total = Object.create(empty_record);
