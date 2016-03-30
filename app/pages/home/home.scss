@@ -14,8 +14,12 @@
   }
 }
 
-.avatar {
-  height: 80px;
+.user-info {
+  text-align: center;
+  margin: 5rem 0 6rem;
+  img {
+    border-radius: 50%;
+  }
 }
 
 .hours-alert {

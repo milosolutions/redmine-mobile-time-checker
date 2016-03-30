@@ -1,10 +1,16 @@
 <ion-menu [content]="content">
 
-    <ion-toolbar>
-        <ion-title>Pages</ion-title>
-    </ion-toolbar>
-
     <ion-content>
+        <div *ngIf="user" class="user-info">
+            <p>
+                <img src={{user.src}}/>
+            </p>
+
+            <h2>
+                {{user.name}}
+            </h2>
+            <p>{{user.email}}</p>
+        </div>
         <ion-list>
             <button ion-item *ngFor="#p of pages" (click)="openPage(p)">
                 {{p.title}}

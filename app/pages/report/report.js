@@ -66,7 +66,7 @@ export class ReportPage {
                     group.hours = 0;
                     group.issues = [];
                 });
-                console.log(data);
+
                 let total = 0;
                 let entries = data.time_entries;
                 entries.forEach(entry => {

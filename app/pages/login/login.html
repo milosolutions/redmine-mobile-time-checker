@@ -5,6 +5,10 @@
     <ion-item clearInput>
         <ion-input type="text" [(ngModel)]="url" placeholder="Redmine url"></ion-input>
     </ion-item>
+    <ion-item>
+        <ion-label>Secure https connection</ion-label>
+        <ion-checkbox [(ngModel)]="secured"></ion-checkbox>
+    </ion-item>
     <ion-item clearInput>
         <ion-input type="text" [(ngModel)]="key" placeholder="Redmine API key"></ion-input>
     </ion-item>
