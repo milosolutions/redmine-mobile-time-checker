@@ -1,13 +1,6 @@
 import { Page, NavController, Storage, LocalStorage } from 'ionic-angular';
 import { SettingsPage } from '../settings/settings'
 import { RedmineApi } from '../../providers/redmine-api/redmine-api.js'
-// Returns the ISO week of the date.
-//Date.prototype.getWeek = function(){
-//    var d = new Date(+this);
-//    d.setHours(0,0,0);
-//    d.setDate(d.getDate()+4-(d.getDay()||7));
-//    return Math.ceil((((d-new Date(d.getFullYear(),0,1))/8.64e7)+1)/7);
-//};
 
 @Page({
     templateUrl: 'build/pages/report/report.html',
@@ -53,10 +46,6 @@ export class ReportPage {
         return parseInt(this.week);
     }
 
-    float(string){
-        return string == '' ? 0.00 : Number(string);
-    }
-
     getReport() {
         this.loading = true;
 
@@ -95,43 +84,7 @@ export class ReportPage {
                     }
                 });
                 this.hours = total;
-                //let total = Object.create(empty_record);
-                //total.project = 'Total time';
-                //total.total = 0;
-                //
-                //Object.keys(projects).forEach(key => {
-                //    let prj_entry = Object.create(empty_record);
-                //    prj_entry.project = key;
-                //    let issues = [];
-                //    projects[key].forEach(entry => {
-                //        let day = new Date(entry.spent_on).getDay();
-                //        console.log(day, this.groups[day-1])
-                //        let filter = issues.filter(issue => issue.issue == entry.issue.id);
-                //        if (filter.length > 0) {
-                //            let issue = filter[0];
-                //            issue[day] = this.float(issue[day]) + this.float(entry.hours);
-                //        } else {
-                //            let issue = Object.create(empty_record);
-                //            issue.issue = entry.issue.id;
-                //            issue[day] = this.float(entry.hours);
-                //            issues.push(issue);
-                //        }
-                //
-                //        prj_entry[day] = this.float(prj_entry[day]) + this.float(entry.hours);
-                //        total[day] = this.float(total[day]) + this.float(entry.hours);
-                //    });
-                //
-                //    for (var i = 0; i < 7; i++) {
-                //        prj_entry.total += this.float(prj_entry[i]);
-                //    }
-                //    issues.forEach(issue => {
-                //        for (var i = 0; i < 7; i++) {
-                //            issue.total += this.float(issue[i])
-                //        }
-                //    });
-                //    total.total += prj_entry.total;
-                //});
-                //this.hours = total.total;
+
                 this.daygroups.forEach(group => {
                     group.issues.forEach(issue => {
                         this._redminer.load('issues/'+issue.id+'.json', this.key).then(data => {
