@@ -8,13 +8,10 @@
         <button (click)="refresh($event)">
             <ion-icon name="refresh"></ion-icon>
         </button>
-        <button (click)="settings($event)">
-            <ion-icon name="more"></ion-icon>
-        </button>
     </ion-buttons>
 </ion-navbar>
 
-<ion-content padding class="info grid-page">
+<ion-content padding class="info report-page">
     <div class="bg-small report-info" style="background-image: url(img/placeholder.png)">
         <ion-segment [(ngModel)]="week" class="navigation" (change)="getReport()">
             <ion-segment-button value="{{getWeek()-1}}">
@@ -23,8 +20,9 @@
             </ion-segment-button>
             <ion-segment-button class="info">
                 <span>Week</span>
+
                 <div class="week">{{week}}</div>
-                <div class="dates">{{mon.toDate() | date:"dd.MM" }}-{{sun.toDate() | date:"dd.MM" }}</div>
+                <div class="dates">{{mon.format('DD.MM') }}-{{sun.format('DD.MM') }}</div>
             </ion-segment-button>
             <ion-segment-button value="{{getWeek()+1}}">
                 <ion-icon name="arrow-dropright"></ion-icon>
@@ -33,91 +31,39 @@
         </ion-segment>
         <div class="hours">
             Total hours logged:<br/>
+
             <div>{{hours}}h</div>
         </div>
-        <!--<div class="navigation">-->
-        <!--<div>-->
-        <!--<ion-icon name="arrow-dropleft"></ion-icon>-->
-        <!--Prev Week-->
-        <!--</div>-->
-        <!--<div class="info">-->
-        <!--Week <span class="week">{{ week }}</span>-->
-        <!--</div>-->
-        <!--<div>-->
-        <!--<ion-icon name="arrow-dropright"></ion-icon>-->
-        <!--Next Week-->
-        <!--</div>-->
-        <!--</div>-->
     </div>
+
+
     <div *ngIf="loading" class="loading">
         <ion-spinner></ion-spinner>
     </div>
     <div *ngIf="!loading" class="loading">
-        <div class="grid">
-            <ion-row class="header">
-                <ion-col width-10>
-                    <div>Project</div>
-                </ion-col>
-                <ion-col width-10>
-                    <div>Issue</div>
-                </ion-col>
-                <ion-col width-10>
-                    <div>Mo</div>
-                </ion-col>
-                <ion-col width-10>
-                    <div>Tu</div>
-                </ion-col>
-                <ion-col width-10>
-                    <div>We</div>
-                </ion-col>
-                <ion-col width-10>
-                    <div>Th</div>
-                </ion-col>
-                <ion-col width-10>
-                    <div>Fr</div>
-                </ion-col>
-                <ion-col width-10>
-                    <div>Sa</div>
-                </ion-col>
-                <ion-col width-10>
-                    <div>Su</div>
-                </ion-col>
-                <ion-col width-10>
-                    <div>Total</div>
-                </ion-col>
-            </ion-row>
-            <ion-row *ngFor="#item of data" [ngClass]="item.project!='' ? 'project-row' : ''">
-                <ion-col width-10>
-                    <div class="name">{{item.project}}</div>
-                </ion-col>
-                <ion-col width-10>
-                    <div *ngIf="item.issue" class="issue">{{'#'+item.issue}}</div>
-                </ion-col>
-                <ion-col width-10>
-                    <div>{{item['1']}}</div>
-                </ion-col>
-                <ion-col width-10>
-                    <div>{{item['2']}}</div>
-                </ion-col>
-                <ion-col width-10>
-                    <div>{{item['3']}}</div>
-                </ion-col>
-                <ion-col width-10>
-                    <div>{{item['4']}}</div>
-                </ion-col>
-                <ion-col width-10>
-                    <div>{{item['5']}}</div>
-                </ion-col>
-                <ion-col width-10>
-                    <div>{{item['6']}}</div>
-                </ion-col>
-                <ion-col width-10>
-                    <div>{{item['0']}}</div>
-                </ion-col>
-                <ion-col width-10>
-                    <div>{{item.total}}</div>
-                </ion-col>
-            </ion-row>
-        </div>
+        <ion-list *ngIf="daygroups.length==7">
+            <div *ngFor="#group of daygroups">
+                <ion-item class="item-stable"
+                          (click)="toggleGroup(group)"
+                          [ngClass]="{active: true }">
+                    &nbsp;
+                    <span class="day">{{group.name}}</span>
+                    <span class="day-hours" *ngIf="group.hours>0">{{group.hours}}h</span>
+                </ion-item>
+                <ion-item class="item-accordion"
+                          *ngFor="#issue of group.issues"
+                          [hidden]="isGroupHidden(group)">
+                    <div class="info">
+                        <p class="header">{{issue.subject}}</p>
+                        <p>{{issue.project}}</p>
+                    </div>
+                    <div class="hours">
+                        <small class="issue-id">{{'#'+issue.id}}</small>
+                        <p>{{issue.hours}}h</p>
+                    </div>
+
+                </ion-item>
+            </div>
+        </ion-list>
     </div>
 </ion-content>

@@ -35,7 +35,7 @@ gulp.task('html', copyHTML);
 gulp.task('fonts', copyFonts);
 gulp.task('fonts', function(){
   return copyFonts({
-    src: ['node_modules/ionic-angular/fonts/**/*.+(ttf|woff|woff2)', 'node_modules/font-awesome/fonts/**/*.+(eot|ttf|woff|woff2|svg)']
+    src: ['node_modules/ionic-angular/fonts/**/*.+(ttf|woff|woff2)', 'node_modules/font-awesome/fonts/**/*.+(eot|ttf|woff|woff2|svg)', 'assets/fonts/*.+(eot|ttf|woff|woff2|svg)']
   })
 });
 gulp.task('clean', function(done){
