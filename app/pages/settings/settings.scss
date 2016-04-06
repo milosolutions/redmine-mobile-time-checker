@@ -94,7 +94,40 @@ ion-list.settings{
     }
     .fa, .icon {
       padding-left: 1.5rem;
-      color: #d66907;
+      color: #f07306;
+    }
+  }
+  .toggle-icon {
+    background-color: #9f9eb5;
+    width: 3.5rem;
+    height: 2rem;
+    border-radius: 1rem;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      left: 2px;
+      bottom: 2px;
+      border-radius: 16px;
+      background-color: #fff;
+    }
+    &.toggle-checked {
+      background-color: #f6cca6;
+      &::before {
+        background-color: #f6cca6;
+      }
+      .toggle-inner {
+        -webkit-transform: translate3d(1.625rem, 0, 0);
+        transform: translate3d(1.625rem, 0, 0);
+      }
+    }
+    .toggle-inner {
+      top: 0.35rem;
+      left: 0.35rem;
+      width: 1.25rem;
+      height: 1.25rem;
+      background-color: #f07306;
     }
   }
 }

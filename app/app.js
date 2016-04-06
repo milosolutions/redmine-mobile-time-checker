@@ -36,7 +36,7 @@ export class MyApp {
         if (!hasKey) {
             this.rootPage = LoginPage;
         } else {
-            this.rootPage = SettingsPage;
+            this.rootPage = ReportPage;
             this.loadInfo();
         }
     }

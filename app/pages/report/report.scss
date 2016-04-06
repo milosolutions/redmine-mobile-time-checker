@@ -185,6 +185,7 @@ ion-list {
       font-size: 14px;
       border: none;
       &::before {
+        font: normal normal normal 14px / 1 FontAwesome;
         padding: 5px;
         font-size: 20px;
         position: relative;
@@ -196,9 +197,16 @@ ion-list {
       }
       &.confirm {
         color: #7cb73d;
+        &::before {
+          content: "\f00c";
+        }
+
       }
       &.dismiss {
         color: #ff0000;
+        &::before {
+          content: "\f05e";
+        }
       }
     }
 
@@ -229,11 +237,11 @@ ion-list {
   .alert-wrapper .alert-head {
     padding-left: 10px;
     h2::before {
-      background: url('../../img/current-key-icon.png') no-repeat bottom;
-      background-size: 17px;
-      content: '';
-      padding-right: 20px;
-      margin-right: 5px;
+      font: normal normal normal 14px / 1 Icomoon;
+      content: '\e902';
+      margin: 0 5px;
+      font-size: 1.45rem;
+      vertical-align: bottom;
     }
   }
 }

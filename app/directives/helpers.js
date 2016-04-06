@@ -20,7 +20,7 @@ export function runSettingsAlert(setting, nav, local) {
         buttons: [
             {
                 text: 'Save',
-                cssClass: 'fa fa-check confirm',
+                cssClass: 'confirm',
                 handler: data => {
                     if (setting.name == 'vacation'){
                         let validate = new Date(data[setting.name]) > new Date();
@@ -41,7 +41,7 @@ export function runSettingsAlert(setting, nav, local) {
             {
                 text: 'Cancel',
                 role: 'cancel',
-                cssClass: 'fa fa-ban dismiss',
+                cssClass: 'dismiss',
                 handler: data => {
                     if (setting.name == 'vacation')
                         setting.toggled = false;
