@@ -28,6 +28,17 @@
   font-weight: bold;
   font-style: normal;
 }
+@font-face {
+  font-family: 'Icomoon';
+  src: url('../fonts/icomoon.eot');
+  src: url('../fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/icomoon.woff') format('woff'),
+  url('../fonts/icomoon.ttf') format('truetype'),
+  url('../fonts/icomoon.svg') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+
 body {
   font-family: 'Montserrat';
   font-weight: normal;
@@ -52,4 +63,31 @@ ion-navbar {
     font-weight: 400;
     font-size: 1.75rem;
   }
+}
+
+.icon {
+  display: inline-block;
+  font: normal normal normal 14px / 1 Icomoon;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+.icon-clock:before {
+  content: "\e900";
+}
+.icon-cog:before {
+  content: "\e901";
+}
+.icon-key:before {
+  content: "\e902";
+}
+.icon-menu:before {
+   content: "\e903";
+}
+.icon-off:before {
+  content: "\e904";
+}
+
+.icon-menu {
+  font-size: 2rem;
 }

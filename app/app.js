@@ -25,9 +25,9 @@ export class MyApp {
 
         this._redminer = _redminer;
         this.pages = [
-            { title: 'Redmine report', component: ReportPage, icon: 'fa-clock-o' },
-            { title: 'Settings', component: SettingsPage, icon: 'fa-cog' },
-            { title: 'Log out', icon: 'fa-sign-out'}
+            { title: 'Redmine report', component: ReportPage, icon: 'icon icon-clock' },
+            { title: 'Settings', component: SettingsPage, icon: 'icon icon-cog' },
+            { title: 'Log out', icon: 'icon icon-off'}
         ];
 
         this.local = new Storage(LocalStorage);
@@ -36,7 +36,7 @@ export class MyApp {
         if (!hasKey) {
             this.rootPage = LoginPage;
         } else {
-            this.rootPage = ReportPage;
+            this.rootPage = SettingsPage;
             this.loadInfo();
         }
     }

@@ -92,7 +92,7 @@ ion-list {
     border-bottom: 1px solid #c8c7cc;
     &.item-stable {
       .day {
-        color: map-get($colors, primary);
+        color: #f07306;
         font-weight: 600;
       }
       .day-hours {
@@ -157,9 +157,11 @@ ion-list {
 
 .alert-cmp {
   .alert-wrapper {
-    max-width: 90%;
-    min-width: 87%;
+    max-width: 400px;
+    width: 87%;
+    min-width: 0;
     background-color: #fff;
+    border-radius: 0.65rem;
     .alert-head {
       color: map-get($colors, primary);
       border-bottom: 2px solid map-get($colors, primary);
@@ -193,16 +195,19 @@ ion-list {
         text-align: right;
       }
       &.confirm {
-        color: green
+        color: #7cb73d;
       }
       &.dismiss {
-        color: red
+        color: #ff0000;
       }
     }
 
     .alert-input {
       font-size: 1.25rem;
       text-align: center;
+      border: none;
+      border-bottom: 1px solid rgba(204,204,204,0.35);
+      border-radius: 0;
     }
   }
 }

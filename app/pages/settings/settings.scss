@@ -1,6 +1,9 @@
 .settings {
   margin-top: 32px;
 }
+.settings-title {
+  margin-right: 3rem;
+}
 
 .info {
   text-align: center;
@@ -30,12 +33,12 @@
   }
   .name {
     margin-bottom: 0;
-    font-size: 1.65rem;
+    font-size: 1.875rem;
     margin-top: 0.75rem;
   }
   .email {
     font-size: 1.15rem;
-    color: #888;
+    color: #aba9be;
     word-wrap: normal;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -45,10 +48,14 @@
 
 .logo-bottom {
   position: absolute;
-  bottom: 3rem;
   width: 6rem;
   left: 50%;
-  margin-left: -3rem;
+  margin: 3rem 0 3rem -3rem;
+  @media(min-height: 526px) {
+    & {
+      bottom: 0;
+    }
+  }
 }
 
 
@@ -57,7 +64,7 @@ ion-list.settings, ion-list.side-menu {
   .item {
     border-color: rgba(200, 199, 204, 0.5);
     .item-inner {
-      color: #333;
+      color: #474747;
       font-size: 1.35rem;
     }
     &:first-child {
@@ -70,20 +77,22 @@ ion-list.settings, ion-list.side-menu {
 }
 
 ion-list.side-menu {
-  .item .fa {
+  .item {
+    .fa, .icon {
       padding-right: 1.5rem;
-      color: #888;
+      color: #7d7d7d;
+    }
   }
 }
 ion-list.settings{
   .item {
     .item-inner {
-      color: #888;
+      color: #9f9eb5;
     }
     ion-note{
       color: #333;
     }
-    .fa {
+    .fa, .icon {
       padding-left: 1.5rem;
       color: #d66907;
     }

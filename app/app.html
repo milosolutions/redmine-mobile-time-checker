@@ -13,7 +13,8 @@
         </div>
         <ion-list class="side-menu">
             <button ion-item *ngFor="#p of pages" (click)="openPage(p)">
-                <i class="fa {{p.icon}}"></i>{{p.title}}
+                <i class="{{p.icon}}"></i>
+                {{p.title}}
             </button>
         </ion-list>
 
