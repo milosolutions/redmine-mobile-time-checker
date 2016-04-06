@@ -14,7 +14,7 @@ ion-title {
 .report-info {
   .navigation {
     height: 14rem;
-    ion-icon{
+    ion-icon {
       line-height: 2rem;
       padding-top: 2rem;
       font-size: 2rem;
@@ -28,18 +28,18 @@ ion-title {
       line-height: 2rem;
       font-size: 1.4rem;
       font-weight: 300;
-      color: rgba(255,255,255,0.35);
+      color: rgba(255, 255, 255, 0.35);
       transition: color 0.75s ease;
-      &:hover{
+      &:hover {
         background: transparent;
         transition: color 0.75s ease;
         color: #fff;
       }
-      &.segment-activated{
+      &.segment-activated {
         background-color: transparent;
       }
     }
-    .info.segment-button{
+    .info.segment-button {
       height: 11rem;
       color: #fff;
       font-size: 2rem;
@@ -50,7 +50,7 @@ ion-title {
         line-height: 4.5rem;
         font-weight: 400;
       }
-      .dates{
+      .dates {
         font-size: 1.15rem;
         color: #afb1ca;
       }
@@ -60,7 +60,7 @@ ion-title {
     }
   }
 
-  .hours{
+  .hours {
     height: 4rem;
     font-size: 1.15rem;
     line-height: 1.15rem;
@@ -79,12 +79,12 @@ ion-title {
   }
 }
 
-.report-page{
-  padding: 15px 0;
+.report-page {
   scroll-content {
     padding: 16px 0;
   }
 }
+
 ion-list {
   border-top: 1px solid #c8c7cc;
 
@@ -92,10 +92,10 @@ ion-list {
     border-bottom: 1px solid #c8c7cc;
     &.item-stable {
       .day {
-        color: map-get($colors, primary);
+        color: #f07306;
         font-weight: 600;
       }
-      .day-hours{
+      .day-hours {
         float: right;
       }
     }
@@ -115,7 +115,7 @@ ion-list {
     &.ng-hide {
       line-height: 0px;
     }
-    &.ng-hide-add, &.ng-hide-remove{
+    &.ng-hide-add, &.ng-hide-remove {
       display: block !important;
     }
 
@@ -151,6 +151,97 @@ ion-list {
         position: relative;
         top: -0.25rem;
       }
+    }
+  }
+}
+
+.alert-cmp {
+  .alert-wrapper {
+    max-width: 400px;
+    width: 87%;
+    min-width: 0;
+    background-color: #fff;
+    border-radius: 0.65rem;
+    .alert-head {
+      color: map-get($colors, primary);
+      border-bottom: 2px solid map-get($colors, primary);
+      h2 {
+        font-size: 15px;
+        text-align: left;
+        &::before {
+          padding-right: 5px;
+          font-weight: 500;
+        }
+      }
+    }
+
+    .alert-message {
+      padding: 16px 16px 10px 30px;
+      font-size: 15px;
+      color: #666;
+      text-align: left;
+    }
+    .alert-button {
+      font-size: 14px;
+      border: none;
+      &::before {
+        font: normal normal normal 14px / 1 FontAwesome;
+        padding: 5px;
+        font-size: 20px;
+        position: relative;
+        top: 2px;
+      }
+
+      &:first-child {
+        text-align: right;
+      }
+      &.confirm {
+        color: #7cb73d;
+        &::before {
+          content: "\f00c";
+        }
+
+      }
+      &.dismiss {
+        color: #ff0000;
+        &::before {
+          content: "\f05e";
+        }
+      }
+    }
+
+    .alert-input {
+      font-size: 1.25rem;
+      text-align: center;
+      border: none;
+      border-bottom: 1px solid rgba(204,204,204,0.35);
+      border-radius: 0;
+    }
+  }
+}
+
+.hours-alert {
+  .alert-wrapper .alert-head h2::before {
+    font: normal normal normal 14px / 1 FontAwesome;
+    content: "\f071";
+  }
+}
+
+.alert-hours_week {
+  .alert-wrapper .alert-head h2::before {
+    font: normal normal normal 14px / 1 FontAwesome;
+    content: "\f017";
+  }
+}
+.alert-key {
+  .alert-wrapper .alert-head {
+    padding-left: 10px;
+    h2::before {
+      font: normal normal normal 14px / 1 Icomoon;
+      content: '\e902';
+      margin: 0 5px;
+      font-size: 1.45rem;
+      vertical-align: bottom;
     }
   }
 }

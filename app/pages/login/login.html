@@ -2,14 +2,47 @@
     <p class="logo">
         <img src="img/milosolutions.png"/>
     </p>
-    <ion-item clearInput>
-        <ion-input type="text" [(ngModel)]="url" placeholder="Redmine url"></ion-input>
-    </ion-item>
-    <ion-item clearInput>
-        <ion-input type="text" [(ngModel)]="key" placeholder="Redmine API key"></ion-input>
-    </ion-item>
-    <p>
-        <button round light (click)="login($event)" [disabled]="!key">Next</button>
-    </p>
+    <!--<div class="input">-->
+    <!--<ion-item>-->
+    <!--<ion-label stacked>Redmine URL</ion-label>-->
+    <!--<ion-input type="text" [(ngModel)]="url"></ion-input>-->
+    <!--</ion-item>-->
+    <!--<ion-item>-->
+    <!--<ion-label>Secure https connection</ion-label>-->
+    <!--<ion-checkbox [(ngModel)]="secured"></ion-checkbox>-->
+    <!--</ion-item>-->
+    <!--<ion-item>-->
+    <!--<ion-label stacked>API Key</ion-label>-->
+    <!--<ion-input type="text" [(ngModel)]="key"></ion-input>-->
+    <!--</ion-item>-->
+    <!--</div>-->
+
+    <form [ngFormModel]="authForm" (ngSubmit)="login(authForm.value)" class="login-form">
+        <div *ngIf="url.hasError('required') && url.touched"
+             class="error-box">This field is required</div>
+        <div *ngIf="url.hasError('checkRedmineUrl') && url.touched"
+             class="error-box">Such Redmine URL doesn't exist!</div>
+        <ion-item [class.error]="!url.valid && url.touched">
+            <ion-label stacked>Redmine URL</ion-label>
+            <ion-input type="text" value="" [ngFormControl]="url"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Secure https connection</ion-label>
+            <ion-checkbox [ngFormControl]="secured"></ion-checkbox>
+        </ion-item>
+        <div *ngIf="key.hasError('required') && url.touched"
+             class="error-box">This field is required</div>
+        <div *ngIf="key.hasError('checkKey') && url.touched"
+             class="error-box">This API key is incorrect</div>
+        <ion-item [class.error]="!key.valid && key.touched">
+            <ion-label stacked>API Key</ion-label>
+            <ion-input type="text" value="" [ngFormControl]="key" ></ion-input>
+        </ion-item>
+        <p class="submit">
+            <button light type="submit" [disabled]="!authForm.valid">Login</button>
+        </p>
+    </form>
+
 
 </ion-content>

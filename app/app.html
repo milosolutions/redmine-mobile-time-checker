@@ -1,17 +1,27 @@
 <ion-menu [content]="content">
 
-    <ion-toolbar>
-        <ion-title>Pages</ion-title>
-    </ion-toolbar>
-
     <ion-content>
-        <ion-list>
+        <div *ngIf="user" class="user-info">
+            <p class="avatar">
+                <img src={{user.src}}/>
+            </p>
+
+            <p class="name">
+                {{user.name}}
+            </p>
+            <span class="email">{{user.email}}</span>
+        </div>
+        <ion-list class="side-menu">
             <button ion-item *ngFor="#p of pages" (click)="openPage(p)">
+                <i class="{{p.icon}}"></i>
                 {{p.title}}
             </button>
         </ion-list>
-    </ion-content>
 
+        <div class="logo-bottom">
+            <img src="img/milosolutions_black.png"/>
+        </div>
+    </ion-content>
 </ion-menu>
 
 <ion-nav id="nav" [root]="rootPage" #content swipe-back-enabled="false"></ion-nav>

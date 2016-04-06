@@ -1,6 +1,7 @@
 <ion-navbar *navbar>
     <button menuToggle start>
-        <ion-icon name="menu"></ion-icon>
+        <!--<ion-icon name="menu"></ion-icon>-->
+        <i class="icon icon-menu"></i>
     </button>
     <ion-title>Work Report</ion-title>
 
@@ -12,7 +13,7 @@
 </ion-navbar>
 
 <ion-content padding class="info report-page">
-    <div class="bg-small report-info" style="background-image: url(img/placeholder.png)">
+    <div class="bg-small report-info" style="background-image: url(img/report_top.jpg)">
         <ion-segment [(ngModel)]="week" class="navigation" (change)="getReport()">
             <ion-segment-button value="{{getWeek()-1}}">
                 <ion-icon name="arrow-dropleft"></ion-icon>

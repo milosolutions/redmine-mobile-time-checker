@@ -1,12 +1,13 @@
 <ion-navbar *navbar>
     <button menuToggle start>
-        <ion-icon name="menu"></ion-icon>
+        <!--<ion-icon name="menu"></ion-icon>-->
+        <i class="icon icon-menu"></i>
     </button>
-    <ion-title>Settings</ion-title>
+    <ion-title class="settings-title">Settings</ion-title>
 </ion-navbar>
 
 <ion-content padding class="info">
-    <div class="bg-small" style="background-image: url(img/placeholder.png)">
+    <div class="bg-small" style="background-image: url(img/settings_top.jpg)">
     </div>
     <ion-list class="settings">
         <ion-item (click)="update(settings[0])">
@@ -16,7 +17,7 @@
         <ion-item *ngFor="#s of settings | slice:1" (click)="update(s)">
             <ion-label>{{s.title}}</ion-label>
             <ion-note item-right>
-                {{s.current}}
+                {{s.current}} <i class="fa fa-pencil"></i>
             </ion-note>
         </ion-item>
     </ion-list>
