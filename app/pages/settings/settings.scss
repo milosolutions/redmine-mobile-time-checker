@@ -1,3 +1,91 @@
 .settings {
   margin-top: 32px;
 }
+
+.info {
+  text-align: center;
+  h2{
+    margin: 1.6rem 0;
+  }
+  .loading {
+    height: 134px;
+    ion-spinner {
+      position: relative;
+      top: calc(50% - 28px);
+      height: 56px;
+      width: 56px;
+    }
+  }
+}
+
+.user-info {
+  text-align: center;
+  margin: 3.75rem 0;
+  .avatar{
+    width: 10rem;
+    margin: auto;
+    img {
+      border-radius: 50%;
+    }
+  }
+  .name {
+    margin-bottom: 0;
+    font-size: 1.65rem;
+    margin-top: 0.75rem;
+  }
+  .email {
+    font-size: 1.15rem;
+    color: #888;
+    word-wrap: normal;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding: 0 1.5rem;
+  }
+}
+
+.logo-bottom {
+  position: absolute;
+  bottom: 3rem;
+  width: 6rem;
+  left: 50%;
+  margin-left: -3rem;
+}
+
+
+ion-list.settings, ion-list.side-menu {
+  border-color: rgba(200,199,204,0.5);
+  .item {
+    border-color: rgba(200, 199, 204, 0.5);
+    .item-inner {
+      color: #333;
+      font-size: 1.35rem;
+    }
+    &:first-child {
+      border-top: none;
+    }
+    &:last-child {
+      border-color: rgba(200, 199, 204, 0.5);
+    }
+  }
+}
+
+ion-list.side-menu {
+  .item .fa {
+      padding-right: 1.5rem;
+      color: #888;
+  }
+}
+ion-list.settings{
+  .item {
+    .item-inner {
+      color: #888;
+    }
+    ion-note{
+      color: #333;
+    }
+    .fa {
+      padding-left: 1.5rem;
+      color: #d66907;
+    }
+  }
+}

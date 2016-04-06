@@ -12,7 +12,7 @@
     "zone.js": "0.5.14"
   },
   "scripts": {
-    "serve": "ionic serve -c",
+    "serve": "ionic serve -ad",
     "run": "ionic run android",
     "build": "ionic build android",
     "sign": "jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ./platforms/android/RedmineApp.keystore ./platforms/android/build/outputs/apk/android-release-unsigned.apk RedmineApp"

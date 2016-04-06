@@ -20,13 +20,14 @@ export class MyApp {
         this.app = app;
         this.platform = platform;
         this.menu = menu;
+        this.menu.setUser = this.setUser.bind(this);
         this.initializeApp();
 
         this._redminer = _redminer;
         this.pages = [
-            { title: 'Redmine report', component: ReportPage },
-            { title: 'Settings', component: SettingsPage },
-            { title: 'Log out'}
+            { title: 'Redmine report', component: ReportPage, icon: 'fa-clock-o' },
+            { title: 'Settings', component: SettingsPage, icon: 'fa-cog' },
+            { title: 'Log out', icon: 'fa-sign-out'}
         ];
 
         this.local = new Storage(LocalStorage);
@@ -48,6 +49,11 @@ export class MyApp {
             user.email = data.user.mail;
             this.user = user;
         });
+    }
+
+    setUser(user){
+        user.src = this.get_gravatar(user.email);
+        this.user = user;
     }
 
     initializeApp() {

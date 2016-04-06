@@ -16,7 +16,7 @@
         <ion-item *ngFor="#s of settings | slice:1" (click)="update(s)">
             <ion-label>{{s.title}}</ion-label>
             <ion-note item-right>
-                {{s.current}}
+                {{s.current}} <i class="fa fa-pencil"></i>
             </ion-note>
         </ion-item>
     </ion-list>

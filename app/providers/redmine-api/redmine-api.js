@@ -25,6 +25,11 @@ export class RedmineApi {
             this.root = 'api/';
     }
 
+    setRoot(url){
+        if (navigator.platform != 'Win32')
+            this.root = url;
+    }
+
     load(url, key) {
         this.headers = new Headers();
         this.headers.append("Content-Type", 'application/json');
@@ -35,14 +40,19 @@ export class RedmineApi {
             headers: this.headers
         });
 
-        return new Promise(resolve => {
+        return new Promise((resolve, reject) => {
             this.http.request(new Request(this.requestoptions))
                 .subscribe(
                     data => {
                         this.data = data.json();
                         resolve(this.data);
                     },
-                    err => console.log(err.json())
+                    err => {
+                        if (err.status != 401)
+                            reject(err.json());
+                        else
+                            reject({type: 'error', status: 401});
+                    }
                 );
         });
     }

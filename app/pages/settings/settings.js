@@ -29,15 +29,17 @@ export class SettingsPage {
             {
                 title: 'Change working hours per week',
                 name: 'hours_week',
-                message: 'Current hours: ' + hours,
+                message: 'Current working hours',
                 placeholder: 'Enter new working hours',
+                value: hours,
                 current: hours
             },
             {
                 title: 'Update Redmine API key',
                 name: 'key',
-                message: 'Current key: ' + key,
-                placeholder: 'Enter new API key'
+                message: 'Current API key',
+                placeholder: 'Enter new API key',
+                value: key
             }
         ];
     }

@@ -7,24 +7,20 @@ export function runSettingsAlert(setting, nav, local) {
         return
     }
     let prompt = Alert.create({
-        message: setting.message,
+        title: setting.message,
+        cssClass: 'alert-'+setting.name,
         inputs: [
             {
                 name: setting.name,
                 placeholder: setting.placeholder,
-                type: type
+                type: type,
+                value: setting.value
             }
         ],
         buttons: [
             {
-                text: 'Cancel',
-                handler: data => {
-                    if (setting.name == 'vacation')
-                        setting.toggled = false;
-                }
-            },
-            {
                 text: 'Save',
+                cssClass: 'fa fa-check confirm',
                 handler: data => {
                     if (setting.name == 'vacation'){
                         let validate = new Date(data[setting.name]) > new Date();
@@ -40,6 +36,15 @@ export function runSettingsAlert(setting, nav, local) {
                         setting.current = data[setting.name];
                     }
                     local.set(setting.name, data[setting.name]);
+                }
+            },
+            {
+                text: 'Cancel',
+                role: 'cancel',
+                cssClass: 'fa fa-ban dismiss',
+                handler: data => {
+                    if (setting.name == 'vacation')
+                        setting.toggled = false;
                 }
             }
         ]
