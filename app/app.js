@@ -31,12 +31,23 @@ export class MyApp {
         ];
 
         this.local = new Storage(LocalStorage);
-        this.local.set('display-alert', true);
         let hasKey = this.local.get('key')._result != null;
         if (!hasKey) {
             this.rootPage = LoginPage;
         } else {
             this.rootPage = ReportPage;
+            let offset = 1;
+            if (moment().month()>=2 && moment().month()<=9) {
+                let year = moment().year();
+                let spring = moment().set({'year': year, 'month': 2, 'date': 31}).day("Sunday");
+                let fall = moment().set({'year': year, 'month': 9, 'date': 31}).day("Sunday");
+                let now = moment();
+                if (moment.max(spring,now) == now && moment.min(fall, now) == now)
+                    offset += 1;
+            }
+            if (moment().day() == 1 && moment().utc().hour() < 11-offset) {
+                this.local.set('display-alert', true);
+            }
             this.loadInfo();
         }
     }

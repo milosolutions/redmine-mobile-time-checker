@@ -1,5 +1,4 @@
 import { Page, NavController, Alert, Storage, LocalStorage } from 'ionic-angular';
-import { HomePage } from '../home/home'
 import { runSettingsAlert } from '../../directives/helpers'
 
 @Page({
@@ -47,7 +46,6 @@ export class SettingsPage {
     }
 
     update(setting) {
-        console.log(setting.toggled)
         if (setting.name == 'vacation' && !setting.toggled) {
             this.local.remove('vacation');
         } else {
