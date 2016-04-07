@@ -1,5 +1,4 @@
 import { Page, NavController, Alert, Storage, LocalStorage } from 'ionic-angular';
-import { HomePage } from '../home/home'
 import { runSettingsAlert } from '../../directives/helpers'
 
 @Page({

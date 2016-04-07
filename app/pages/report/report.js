@@ -53,7 +53,6 @@ export class ReportPage {
                 let hours = 0;
                 data.time_entries.forEach(entry => hours += entry.hours);
 
-                console.log(hours)
                 let vacation = this.local.get('vacation')._result;
                 let hours_week = this.local.get('hours_week')._result;
                 vacation = new Date(vacation) > new Date();
