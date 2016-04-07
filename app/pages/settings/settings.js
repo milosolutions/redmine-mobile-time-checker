@@ -47,7 +47,6 @@ export class SettingsPage {
     }
 
     update(setting) {
-        console.log(setting.toggled)
         if (setting.name == 'vacation' && !setting.toggled) {
             this.local.remove('vacation');
         } else {

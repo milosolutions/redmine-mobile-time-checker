@@ -14,7 +14,7 @@
 
 <ion-content padding class="info report-page">
     <div class="bg-small report-info" style="background-image: url(img/report_top.jpg)">
-        <ion-segment [(ngModel)]="week" class="navigation" (change)="getReport()">
+        <ion-segment [(ngModel)]="week" class="navigation" (change)="fetchReport()">
             <ion-segment-button value="{{getWeek()-1}}">
                 <ion-icon name="arrow-dropleft"></ion-icon>
                 <span>Prev Week</span>
