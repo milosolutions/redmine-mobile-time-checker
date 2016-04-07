@@ -219,29 +219,3 @@ ion-list {
     }
   }
 }
-
-.hours-alert {
-  .alert-wrapper .alert-head h2::before {
-    font: normal normal normal 14px / 1 FontAwesome;
-    content: "\f071";
-  }
-}
-
-.alert-hours_week {
-  .alert-wrapper .alert-head h2::before {
-    font: normal normal normal 14px / 1 FontAwesome;
-    content: "\f017";
-  }
-}
-.alert-key {
-  .alert-wrapper .alert-head {
-    padding-left: 10px;
-    h2::before {
-      font: normal normal normal 14px / 1 Icomoon;
-      content: '\e902';
-      margin: 0 5px;
-      font-size: 1.45rem;
-      vertical-align: bottom;
-    }
-  }
-}

@@ -2,13 +2,8 @@ import { Alert } from 'ionic-angular'
 
 export function runSettingsAlert(setting, nav, local) {
     let type = setting.name == 'vacation' ? 'date' : 'text';
-    if (setting.name == 'vacation' && setting.toggled){
-        local.remove(setting.name);
-        return
-    }
     let prompt = Alert.create({
         title: setting.message,
-        cssClass: 'alert-'+setting.name,
         inputs: [
             {
                 name: setting.name,
@@ -42,7 +37,7 @@ export function runSettingsAlert(setting, nav, local) {
                 text: 'Cancel',
                 role: 'cancel',
                 cssClass: 'dismiss',
-                handler: data => {
+                handler: () => {
                     if (setting.name == 'vacation')
                         setting.toggled = false;
                 }

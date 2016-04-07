@@ -7,16 +7,16 @@
 </ion-navbar>
 
 <ion-content padding class="info">
-    <div class="bg-small" style="background-image: url(img/settings_top.jpg)">
+    <div class="bg-small" style="{{'background-image: url('+top_bg+')'}}">
     </div>
     <ion-list class="settings">
-        <ion-item (click)="update(settings[0])">
+        <ion-item >
             <ion-label>{{settings[0].title}}</ion-label>
-            <ion-toggle [(ngModel)]="settings[0].toggled" checked="settings[0].toggled"></ion-toggle>
+            <ion-toggle [(ngModel)]="settings[0].toggled" (change)="update(settings[0])" checked="settings[0].toggled"></ion-toggle>
         </ion-item>
-        <ion-item *ngFor="#s of settings | slice:1" (click)="update(s)">
+        <ion-item *ngFor="#s of settings | slice:1">
             <ion-label>{{s.title}}</ion-label>
-            <ion-note item-right>
+            <ion-note item-right (click)="update(s)">
                 {{s.current}} <i class="fa fa-pencil"></i>
             </ion-note>
         </ion-item>
