@@ -18,7 +18,7 @@ export class ReportPage {
         this.key = this.local.get('key')._result;
         this._redminer = _redmineService;
         this.entries_count = 1;
-        this.week = moment().isoWeek();
+        this.week = parseInt(moment().isoWeek());
         this.hours = 0;
         this.daygroups = [];
         this.loading = true;
@@ -168,7 +168,14 @@ export class ReportPage {
         return group.hidden;
     };
 
-    getWeek() {
-        return parseInt(this.week);
+    nextWeek(event) {
+        if (this.week + 1 <= parseInt(moment().isoWeek()))
+            this.week = parseInt(this.week) + 1;
+        console.log(this.week)
+    }
+    prevWeek(event) {
+        if (this.week - 1 > 0)
+            this.week = parseInt(this.week) - 1;
+        console.log(this.week)
     }
 }
