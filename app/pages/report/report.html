@@ -14,8 +14,8 @@
 
 <ion-content padding class="info report-page">
     <div class="bg-small report-info" style="background-image: url(img/report_top.jpg)">
-        <ion-segment [(ngModel)]="week" class="navigation" (change)="fetchReport()">
-            <ion-segment-button value="{{getWeek()-1}}">
+        <ion-segment class="navigation" (change)="fetchReport()">
+            <ion-segment-button (click)="prevWeek($event)">
                 <ion-icon name="arrow-dropleft"></ion-icon>
                 <span>Prev Week</span>
             </ion-segment-button>
@@ -25,7 +25,7 @@
                 <div class="week">{{week}}</div>
                 <div class="dates">{{mon.format('DD.MM') }}-{{sun.format('DD.MM') }}</div>
             </ion-segment-button>
-            <ion-segment-button value="{{getWeek()+1}}">
+            <ion-segment-button (click)="nextWeek($event)">
                 <ion-icon name="arrow-dropright"></ion-icon>
                 <span>Next Week</span>
             </ion-segment-button>
@@ -33,7 +33,7 @@
         <div class="hours">
             Total hours logged:<br/>
 
-            <div>{{hours}}h</div>
+            <div>{{hours | number : '2.1-2'}}h</div>
         </div>
     </div>
 
