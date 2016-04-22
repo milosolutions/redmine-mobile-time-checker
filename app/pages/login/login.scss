@@ -46,6 +46,10 @@
     }
   }
 
+  .url > input{
+    text-transform: lowercase;
+  }
+
   .item {
     background-color: transparent;
     color: #afb1ca;

@@ -24,7 +24,7 @@
              class="error-box">Such Redmine URL doesn't exist!</div>
         <ion-item [class.error]="!url.valid && url.touched">
             <ion-label stacked>Redmine URL</ion-label>
-            <ion-input type="text" value="" [ngFormControl]="url"></ion-input>
+            <ion-input type="text" class="url" value="" [ngFormControl]="url" (change)="lower_url()"></ion-input>
         </ion-item>
 
         <ion-item>

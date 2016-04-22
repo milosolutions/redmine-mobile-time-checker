@@ -109,6 +109,7 @@ export class ReportPage {
             });
         } else {
             this._redminer.load(url, this.key).then(data => {
+                console.log(data)
                 this.getReport(data);
                 this.loading = false;
             });
