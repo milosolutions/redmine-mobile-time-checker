@@ -108,11 +108,34 @@ export class ReportPage {
                 this.fetchReport();
             });
         } else {
-            this._redminer.load(url, this.key).then(data => {
-                console.log(data)
-                this.getReport(data);
-                this.loading = false;
-            });
+            if (this.entries_count <= 100)
+                this._redminer.load(url, this.key).then(data => {
+                    console.log(data)
+                    this.getReport(data);
+                    this.loading = false;
+                });
+            else {
+                let offset = 0;
+                let first_url = url+'&offset='+offset;
+                let fulldata = {};
+                let inner = function(url){
+                    this._redminer.load(url, this.key).then(data => {
+                        if (fulldata.time_entries == undefined){
+                            fulldata = data;
+                        } else {
+                            fulldata.time_entries = fulldata.time_entries.concat(data.time_entries);
+                        }
+                        if (fulldata.time_entries.length < this.entries_count) {
+                            offset = data.time_entries.length;
+                            inner(url+'&offset='+offset);
+                        } else {
+                            this.getReport(fulldata);
+                            this.loading = false;
+                        }
+                    });
+                }.bind(this);
+                inner(first_url)
+            }
         }
     }
 
@@ -172,11 +195,11 @@ export class ReportPage {
     nextWeek(event) {
         if (this.week + 1 <= parseInt(moment().isoWeek()))
             this.week = parseInt(this.week) + 1;
-        console.log(this.week)
+        this.entries_count = 1;
     }
     prevWeek(event) {
         if (this.week - 1 > 0)
             this.week = parseInt(this.week) - 1;
-        console.log(this.week)
+        this.entries_count = 1;
     }
 }
