@@ -28,13 +28,11 @@ export class LoginPage {
         this.key = this.authForm.controls['key'];
     }
 
-    //checkRedmineUrl(control){
-    //    let valid = /redmine.(.{2,})?.(.{2,})/.test(control.value);
-    //    if (control.value.length > 0 && !valid) {
-    //        return {checkRedmineUrl: true}
-    //    }
-    //}
-
+    next(event){
+        if(event.keyCode == 13) {
+            console.log('azaza')
+        }
+    }
     onPageWillEnter(){
         this.menu.enable(false);
     }
