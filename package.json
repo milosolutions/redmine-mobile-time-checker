@@ -42,7 +42,8 @@
     "cordova-plugin-statusbar",
     "cordova-plugin-console",
     "cordova-plugin-calendar",
-    "ionic-plugin-keyboard"
+    "ionic-plugin-keyboard",
+    "cordova-plugin-crosswalk-webview"
   ],
   "cordovaPlatforms": [
     {

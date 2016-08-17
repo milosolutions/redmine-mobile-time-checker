@@ -19,7 +19,7 @@ export class ReportPage {
         this._redminer = _redmineService;
         this.entries_count = 1;
         this.week = parseInt(moment().isoWeek());
-        this.hours = 0;
+        this.hours = 0.0;
         this.daygroups = [];
         this.loading = true;
         for (var i = 0; i < 7; i++) {
@@ -165,6 +165,7 @@ export class ReportPage {
                 group.issues[index].hours += entry.hours;
             }
         });
+        console.log(total)
         this.hours = total;
 
         this.daygroups.forEach(group => {
