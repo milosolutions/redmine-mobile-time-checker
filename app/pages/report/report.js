@@ -19,6 +19,7 @@ export class ReportPage {
         this._redminer = _redmineService;
         this.entries_count = 1;
         this.week = parseInt(moment().isoWeek());
+        this.isLastWeek = true;
         this.hours = 0.0;
         this.daygroups = [];
         this.loading = true;
@@ -110,7 +111,6 @@ export class ReportPage {
         } else {
             if (this.entries_count <= 100)
                 this._redminer.load(url, this.key).then(data => {
-                    console.log(data)
                     this.getReport(data);
                     this.loading = false;
                 });
@@ -165,7 +165,6 @@ export class ReportPage {
                 group.issues[index].hours += entry.hours;
             }
         });
-        console.log(total)
         this.hours = total;
 
         this.daygroups.forEach(group => {
@@ -196,11 +195,20 @@ export class ReportPage {
     nextWeek(event) {
         if (this.week + 1 <= parseInt(moment().isoWeek()))
             this.week = parseInt(this.week) + 1;
+        else
+            return;
         this.entries_count = 1;
+        this.isLastWeek = this.week == parseInt(moment().isoWeek());
+        this.fetchReport();
     }
     prevWeek(event) {
         if (this.week - 1 > 0)
             this.week = parseInt(this.week) - 1;
+        else
+            return;
         this.entries_count = 1;
+        this.isLastWeek = false;
+        this.isFirstWeek = this.week -1 == 0;
+        this.fetchReport();
     }
 }

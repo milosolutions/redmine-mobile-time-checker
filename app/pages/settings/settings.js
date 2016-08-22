@@ -15,9 +15,10 @@ export class SettingsPage {
         let key = this.local.get('key')._result;
         let end_vacation = this.local.get('vacation')._result;
         this.top_bg = 'img/settings_top_2.jpg';
+        var is_end_vacation = false;
         if (end_vacation != null){
             this.top_bg = 'img/settings_top.jpg';
-            end_vacation = new Date(end_vacation) > new Date();
+            is_end_vacation = new Date(end_vacation) > new Date();
         }
         let hours = this.local.get('hours_week')._result;
         this.settings = [
@@ -25,7 +26,8 @@ export class SettingsPage {
                 title: 'I\'m on vacation!',
                 name: 'vacation',
                 message: 'Please specify end of vacation period',
-                toggled: end_vacation != null
+                toggled: is_end_vacation,
+                date: end_vacation != null ? new Date(end_vacation): ''
             },
             {
                 title: 'Change working hours per week',
@@ -46,8 +48,9 @@ export class SettingsPage {
     }
 
     update(setting) {
-        if (setting.name == 'vacation' && !setting.toggled) {
+        if (setting.name == 'vacation' && setting.toggled) {
             this.local.remove('vacation');
+            setting.date = '';
         } else {
             runSettingsAlert(setting, this.nav, this.local);
         }

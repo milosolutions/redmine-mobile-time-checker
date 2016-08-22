@@ -43,7 +43,8 @@
     "cordova-plugin-console",
     "cordova-plugin-calendar",
     "ionic-plugin-keyboard",
-    "cordova-plugin-crosswalk-webview"
+    "cordova-plugin-crosswalk-webview",
+    "cordova-plugin-datepicker"
   ],
   "cordovaPlatforms": [
     {
