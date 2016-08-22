@@ -21,14 +21,21 @@ export function runSettingsAlert(setting, nav, local) {
                         let validate = new Date(data[setting.name]) > new Date();
                         if (!validate) {
                             setting.toggled = false;
+                            let alert = Alert.create({
+                                title: 'Incorrect end vacation date!',
+                                buttons: ['OK']
+                            });
+                            nav.present(alert);
                             return
                         }
+                        setting.date = new Date(data[setting.name]);
                     } else if (setting.name == 'hours_week'){
                         let reg = /^\d+(.\d+)?$/;
                         if (!reg.test(data[setting.name])){
                             return
                         }
                         setting.current = data[setting.name];
+                        setting.value = data[setting.name];
                     }
                     local.set(setting.name, data[setting.name]);
                 }

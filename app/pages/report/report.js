@@ -19,7 +19,8 @@ export class ReportPage {
         this._redminer = _redmineService;
         this.entries_count = 1;
         this.week = parseInt(moment().isoWeek());
-        this.hours = 0;
+        this.isLastWeek = true;
+        this.hours = 0.0;
         this.daygroups = [];
         this.loading = true;
         for (var i = 0; i < 7; i++) {
@@ -108,10 +109,33 @@ export class ReportPage {
                 this.fetchReport();
             });
         } else {
-            this._redminer.load(url, this.key).then(data => {
-                this.getReport(data);
-                this.loading = false;
-            });
+            if (this.entries_count <= 100)
+                this._redminer.load(url, this.key).then(data => {
+                    this.getReport(data);
+                    this.loading = false;
+                });
+            else {
+                let offset = 0;
+                let first_url = url+'&offset='+offset;
+                let fulldata = {};
+                let inner = function(url){
+                    this._redminer.load(url, this.key).then(data => {
+                        if (fulldata.time_entries == undefined){
+                            fulldata = data;
+                        } else {
+                            fulldata.time_entries = fulldata.time_entries.concat(data.time_entries);
+                        }
+                        if (fulldata.time_entries.length < this.entries_count) {
+                            offset = data.time_entries.length;
+                            inner(url+'&offset='+offset);
+                        } else {
+                            this.getReport(fulldata);
+                            this.loading = false;
+                        }
+                    });
+                }.bind(this);
+                inner(first_url)
+            }
         }
     }
 
@@ -171,11 +195,20 @@ export class ReportPage {
     nextWeek(event) {
         if (this.week + 1 <= parseInt(moment().isoWeek()))
             this.week = parseInt(this.week) + 1;
-        console.log(this.week)
+        else
+            return;
+        this.entries_count = 1;
+        this.isLastWeek = this.week == parseInt(moment().isoWeek());
+        this.fetchReport();
     }
     prevWeek(event) {
         if (this.week - 1 > 0)
             this.week = parseInt(this.week) - 1;
-        console.log(this.week)
+        else
+            return;
+        this.entries_count = 1;
+        this.isLastWeek = false;
+        this.isFirstWeek = this.week -1 == 0;
+        this.fetchReport();
     }
 }

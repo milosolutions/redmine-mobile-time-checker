@@ -39,11 +39,12 @@
       "id": "cordova-plugin-whitelist"
     },
     "cordova-plugin-device",
-    "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
-    "ionic-plugin-keyboard",
     "cordova-plugin-console",
-    "cordova-plugin-calendar"
+    "cordova-plugin-calendar",
+    "ionic-plugin-keyboard",
+    "cordova-plugin-crosswalk-webview",
+    "cordova-plugin-datepicker"
   ],
   "cordovaPlatforms": [
     {

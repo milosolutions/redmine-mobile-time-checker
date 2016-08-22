@@ -28,13 +28,11 @@ export class LoginPage {
         this.key = this.authForm.controls['key'];
     }
 
-    checkRedmineUrl(control){
-        //let valid = /redmine.(.{2,})?.com/.test(control.value);
-        //if (control.value.length > 0 && !valid) {
-        //    return {checkRedmineUrl: true}
-        //}
+    next(event){
+        if(event.keyCode == 13) {
+            console.log('azaza')
+        }
     }
-
     onPageWillEnter(){
         this.menu.enable(false);
     }
@@ -43,9 +41,13 @@ export class LoginPage {
         this.menu.enable(true);
     }
 
+    lower_url(){
+        this.url._value = this.url._value.toLowerCase();
+    }
+
     login(formData) {
         let url = formData.secured ? 'https://' : 'http://';
-        url += formData.url+'/';
+        url += formData.url.replace('www.','').replace(/\s/g,'')+'/';
         this._redminer.setRoot(url);
         this._redminer.load('users/current.json', formData.key).then(
             data => {

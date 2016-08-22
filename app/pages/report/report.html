@@ -14,8 +14,8 @@
 
 <ion-content padding class="info report-page">
     <div class="bg-small report-info" style="background-image: url(img/report_top.jpg)">
-        <ion-segment class="navigation" (change)="fetchReport()">
-            <ion-segment-button (click)="prevWeek($event)">
+        <ion-segment class="navigation">
+            <ion-segment-button (click)="prevWeek($event)" [ngClass]="{'disabled': isFirstWeek}">
                 <ion-icon name="arrow-dropleft"></ion-icon>
                 <span>Prev Week</span>
             </ion-segment-button>
@@ -25,7 +25,7 @@
                 <div class="week">{{week}}</div>
                 <div class="dates">{{mon.format('DD.MM') }}-{{sun.format('DD.MM') }}</div>
             </ion-segment-button>
-            <ion-segment-button (click)="nextWeek($event)">
+            <ion-segment-button (click)="nextWeek($event)" [ngClass]="{'disabled': isLastWeek}">
                 <ion-icon name="arrow-dropright"></ion-icon>
                 <span>Next Week</span>
             </ion-segment-button>
@@ -49,7 +49,7 @@
                           [ngClass]="{active: true }">
                     &nbsp;
                     <span class="day">{{group.name}}</span>
-                    <span class="day-hours" *ngIf="group.hours>0">{{group.hours}}h</span>
+                    <span class="day-hours" *ngIf="group.hours>0">{{group.hours | number : '2.1-2'}}h</span>
                 </ion-item>
                 <ion-item class="item-accordion"
                           *ngFor="#issue of group.issues"
@@ -60,7 +60,7 @@
                     </div>
                     <div class="hours">
                         <small class="issue-id">{{'#'+issue.id}}</small>
-                        <p>{{issue.hours}}h</p>
+                        <p>{{issue.hours | number : '2.1-2'}}h</p>
                     </div>
 
                 </ion-item>

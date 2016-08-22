@@ -46,6 +46,10 @@
     }
   }
 
+  .url > input{
+    text-transform: lowercase;
+  }
+
   .item {
     background-color: transparent;
     color: #afb1ca;
@@ -72,31 +76,72 @@
         border-bottom: 1px solid rgba(222,222,222,0.15);
       }
     }
+  }
+  .item-checkbox {
+    color: #afb1ca;
+    ion-label {
+      font-size: 1.2rem;
+      font-weight: 300;
+      display: inline-block;
+    }
 
-    &.item-checkbox {
+    min-height: 3rem;
 
-      ion-label {
-        font-size: 1.2rem;
-        font-weight: 300;
+    ion-checkbox, input[type='checkbox'] {
+      margin: 12px 4px 10px 36px;
+      display: inline-block;
+      .checkbox-icon {
+        background-color: transparent;
+        border: 1px solid #bbb;
+        border-radius: 0;
+      }
+    }
+    input[type="checkbox"] {
+      position: relative;
+      border: none;
+      -webkit-appearance: none;
+      appearance: none;
+
+      &:focus {
+        outline: none;
       }
 
-      min-height: 3rem;
-
-      ion-checkbox {
-        margin-left: 36px;
-        margin-right: 4px;
-        .checkbox-icon {
-          background-color: transparent;
-          border: 1px solid #bbb;
-          border-radius: 0;
-        }
+      &:focus:after {
+        border-color: #bbb;
       }
 
-      .item-inner {
-        border: none;
-        padding-left: 8px;
-        text-align: left;
+      &:after {
+        content: "";
+        display: block;
+        width: 16px;
+        height: 16px;
+        margin-top: -2px;
+        margin-right: 5px;
+        border: 1px solid #bbb;
+        transition: 240ms;
       }
+
+      &:checked:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 5px;
+        display: table;
+        width: 6px;
+        height: 10px;
+        border: 1px solid #bbb;
+        border-top-width: 0;
+        border-left-width: 0;
+        -ms-transform: rotate(45deg); /* IE 9 */
+        -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
+        transform: rotate(45deg);
+      }
+    }
+
+    .item-inner {
+      border: none;
+      padding-left: 8px;
+      text-align: left;
     }
   }
 
