@@ -3,6 +3,7 @@
     "angular2": "2.0.0-beta.6",
     "es6-promise": "3.0.2",
     "es6-shim": "0.33.13",
+    "font-awesome": "^4.5.0",
     "ionic-angular": "2.0.0-beta.3",
     "ionic-native": "^1.1.0",
     "ionicons": "3.0.0-alpha.3",
@@ -11,9 +12,10 @@
     "zone.js": "0.5.14"
   },
   "scripts": {
-    "serve": "ionic serve -c",
+    "serve": "ionic serve -ad",
     "run": "ionic run android",
-    "build": "ionic build android"
+    "build": "ionic build android --release",
+    "sign": "jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ./platforms/android/RedmineApp.keystore ./platforms/android/build/outputs/apk/android-release-unsigned.apk RedmineApp"
   },
   "devDependencies": {
     "babel-core": "6.5.2",
@@ -37,10 +39,12 @@
       "id": "cordova-plugin-whitelist"
     },
     "cordova-plugin-device",
-    "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
+    "cordova-plugin-console",
+    "cordova-plugin-calendar",
     "ionic-plugin-keyboard",
-    "cordova-plugin-console"
+    "cordova-plugin-crosswalk-webview",
+    "cordova-plugin-datepicker"
   ],
   "cordovaPlatforms": [
     {

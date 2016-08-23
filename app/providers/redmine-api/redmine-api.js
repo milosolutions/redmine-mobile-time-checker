@@ -18,7 +18,6 @@ export class RedmineApi {
 
     constructor(http) {
         this.http = http;
-        this.data = null;
         // mobile settings
         this.root = 'https://redmine.milosolutions.com/';
         // developer settings
@@ -26,27 +25,36 @@ export class RedmineApi {
             this.root = 'api/';
     }
 
-    load() {
-        if (this.data) {
-            // already loaded data
-            return Promise.resolve(this.data);
-        }
+    setRoot(url){
+        if (navigator.platform != 'Win32')
+            this.root = url;
+    }
+
+    load(url, key) {
         this.headers = new Headers();
         this.headers.append("Content-Type", 'application/json');
-        this.headers.append("X-Redmine-API-Key", 'xxxx');
+        this.headers.append("X-Redmine-API-Key", key);
         this.requestoptions = new RequestOptions({
-            url: this.root + 'users/current.json',
+            url: this.root + url,
             method: RequestMethod.Get,
             headers: this.headers
         });
 
-        return this.http.request(new Request(this.requestoptions))
+        return new Promise((resolve, reject) => {
+            this.http.request(new Request(this.requestoptions))
                 .subscribe(
                     data => {
-                        console.log(data.json());
+                        this.data = data.json();
+                        resolve(this.data);
                     },
-                    err => console.log(err.json())
+                    err => {
+                        if (err.status != 401)
+                            reject(err.json());
+                        else
+                            reject({type: 'error', status: 401});
+                    }
                 );
+        });
     }
 }
 

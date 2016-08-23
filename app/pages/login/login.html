@@ -2,11 +2,35 @@
     <p class="logo">
         <img src="img/milosolutions.png"/>
     </p>
-    <ion-item clearInput>
-        <ion-input type="text" [(ngModel)]="key" placeholder="Redmine API key"></ion-input>
-    </ion-item>
-    <p>
-        <button block (click)="login($event)" [disabled]="key==''">Next</button>
-    </p>
+
+    <form [ngFormModel]="authForm" (ngSubmit)="login(authForm.value)" class="login-form" >
+        <div *ngIf="url.hasError('required') && url.touched"
+             class="error-box">This field is required</div>
+        <div *ngIf="url.hasError('checkRedmineUrl') && url.touched"
+             class="error-box">Such Redmine URL doesn't exist!</div>
+        <ion-item [class.error]="!url.valid && url.touched">
+            <ion-label stacked>Redmine URL</ion-label>
+            <ion-input type="text" class="url" value="" [ngFormControl]="url" id="first"
+                       data-dependency="second" (change)="lower_url()"></ion-input>
+        </ion-item>
+
+        <div class="item-checkbox">
+            <input type="checkbox" [ngFormControl]="secured"/>
+            <ion-label>Secure https connection</ion-label>
+        </div>
+
+        <div *ngIf="key.hasError('required') && key.touched"
+             class="error-box">This field is required</div>
+        <div *ngIf="key.hasError('checkKey') && key.touched"
+             class="error-box">This API key is incorrect</div>
+        <ion-item [class.error]="!key.valid && key.touched">
+            <ion-label stacked>API Key</ion-label>
+            <ion-input type="text" value="" [ngFormControl]="key" id="second"></ion-input>
+        </ion-item>
+        <p class="submit">
+            <button light type="submit" [disabled]="!authForm.valid">Login</button>
+        </p>
+    </form>
+
 
 </ion-content>
