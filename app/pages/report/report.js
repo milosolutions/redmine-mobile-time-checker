@@ -23,6 +23,7 @@ export class ReportPage {
         this.hours = 0.0;
         this.daygroups = [];
         this.loading = true;
+
         for (var i = 0; i < 7; i++) {
             this.daygroups[i] = {
                 name: moment().isoWeekday(i + 1).format("dddd"),

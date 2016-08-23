@@ -12,6 +12,7 @@ export function runSettingsAlert(setting, nav, local) {
                 value: setting.value
             }
         ],
+
         buttons: [
             {
                 text: 'Save',
@@ -37,6 +38,7 @@ export function runSettingsAlert(setting, nav, local) {
                         setting.current = data[setting.name];
                         setting.value = data[setting.name];
                     }
+
                     local.set(setting.name, data[setting.name]);
                 }
             },

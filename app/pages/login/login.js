@@ -18,6 +18,7 @@ export class LoginPage {
         this.menu = menu;
         this._redminer = _redmineService;
         this.local = new Storage(LocalStorage);
+
         this.authForm = fb.group({
             'url': ['', Validators.compose([Validators.required, this.checkRedmineUrl])],
             'secured': [false],
@@ -28,11 +29,6 @@ export class LoginPage {
         this.key = this.authForm.controls['key'];
     }
 
-    next(event){
-        if(event.keyCode == 13) {
-            console.log('azaza')
-        }
-    }
     onPageWillEnter(){
         this.menu.enable(false);
     }
@@ -49,6 +45,7 @@ export class LoginPage {
         let url = formData.secured ? 'https://' : 'http://';
         url += formData.url.replace('www.','').replace(/\s/g,'')+'/';
         this._redminer.setRoot(url);
+
         this._redminer.load('users/current.json', formData.key).then(
             data => {
                 let user = {};
@@ -61,7 +58,6 @@ export class LoginPage {
                 // configuring default setting for working hours per week
                 this.local.set('hours_week', 40);
                 this.nav.setRoot(ReportPage);
-                //location.reload();
             },
             error => {
                 if (error.status != undefined && error.status == 401) {
