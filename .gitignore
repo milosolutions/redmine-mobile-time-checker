@@ -18,7 +18,10 @@ dist/
 node_modules/
 tmp/
 temp/
-www/build/
+www/build/css/
+www/build/pages/
+www/build/app.html
+www/build/js/app.bundle.js
 $RECYCLE.BIN/
 platforms/
 plugins/
