@@ -18,7 +18,9 @@
     "sign": "jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ./platforms/android/RedmineApp.keystore ./platforms/android/build/outputs/apk/android-release-unsigned.apk RedmineApp"
   },
   "devDependencies": {
-    "babel-core": "6.5.2",
+    "node-sass" : "3.4.2",
+    "gulp-sass": "2.2.0",
+	"babel-core": "6.5.2",
     "babel-loader": "6.2.3",
     "babel-plugin-transform-decorators-legacy": "1.3.4",
     "babel-preset-es2015": "6.5.0",
@@ -27,8 +29,6 @@
     "gulp-watch": "4.3.5",
     "ionic-gulp-fonts-copy": "^1.0.0",
     "ionic-gulp-html-copy": "^1.0.0",
-    "node-sass" : "^3.4.2",
-    "gulp-sass": "^2.2.0",
     "ionic-gulp-sass-build": "^1.0.0",
     "ionic-gulp-webpack-build": "^1.0.0",
     "strip-sourcemap-loader": "0.0.1"
