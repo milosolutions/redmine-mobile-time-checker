@@ -32,7 +32,7 @@
         <div class="hours">
             Total hours logged:<br/>
 
-            <div>{{hours | number : '2.1-2'}}h</div>
+            <div>{{hours | number : '1.0-2'}}h</div>
         </div>
     </div>
 
@@ -48,7 +48,7 @@
                           [ngClass]="{active: true }">
                     &nbsp;
                     <span class="day">{{group.name}}</span>
-                    <span class="day-hours" *ngIf="group.hours>0">{{group.hours | number : '2.1-2'}}h</span>
+                    <span class="day-hours" *ngIf="group.hours>0">{{group.hours | number : '1.0-2'}}h</span>
                 </ion-item>
                 <ion-item class="item-accordion"
                           *ngFor="#issue of group.issues"
@@ -59,7 +59,7 @@
                     </div>
                     <div class="hours">
                         <small class="issue-id">{{'#'+issue.id}}</small>
-                        <p>{{issue.hours | number : '2.1-2'}}h</p>
+                        <p>{{issue.hours | number : '1.0-2'}}h</p>
                     </div>
 
                 </ion-item>

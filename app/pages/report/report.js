@@ -168,6 +168,8 @@ export class ReportPage {
         });
         this.hours = total;
 
+        console.log('This ', this);
+
         this.daygroups.forEach(group => {
             group.issues.forEach(issue => {
                 this._redminer.load('issues/' + issue.id + '.json', this.key).then(data => {
