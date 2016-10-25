@@ -1,7 +1,10 @@
-import { Page, NavController, Storage, LocalStorage, Alert } from 'ionic-angular';
-import { SettingsPage } from '../settings/settings'
-import { RedmineApi } from '../../providers/redmine-api/redmine-api.js'
-import { runSettingsAlert } from '../../directives/helpers'
+import { Page, NavController, Storage, LocalStorage, Alert, Events } from 'ionic-angular';
+import { Gesture } from 'ionic-angular/gestures/gesture';
+import { SettingsPage } from '../settings/settings';
+import { RedmineApi } from '../../providers/redmine-api/redmine-api.js';
+import { runSettingsAlert } from '../../directives/helpers';
+import { OnInit, OnDestroy, ElementRef } from 'angular2/core';
+
 
 @Page({
     templateUrl: 'build/pages/report/report.html',
@@ -9,10 +12,12 @@ import { runSettingsAlert } from '../../directives/helpers'
 })
 export class ReportPage {
     static get parameters() {
-        return [[NavController], [RedmineApi]];
+        return [[NavController], [RedmineApi], [ElementRef], [Events]];
     }
 
-    constructor(nav, _redmineService) {
+    constructor(nav, _redmineService, content, events) {
+        this.content = content.nativeElement;
+        this.events = events;
         this.nav = nav;
         this.local = new Storage(LocalStorage);
         this.key = this.local.get('key')._result;
@@ -23,6 +28,7 @@ export class ReportPage {
         this.hours = 0.0;
         this.daygroups = [];
         this.loading = true;
+        this.eventsGesture = Gesture;
 
         for (var i = 0; i < 7; i++) {
             this.daygroups[i] = {
@@ -40,6 +46,25 @@ export class ReportPage {
         } else {
             this.fetchReport();
         }
+    }
+
+    ngOnInit() {
+        console.log(this.events);
+        this.events.subscribe('menu:dragged', () => {
+          console.log('menu has been dragged');
+        });
+        this.eventsGesture = new Gesture(this.content);
+        this.eventsGesture.listen();
+        this.eventsGesture.on('swipeleft', e => {
+          if (!this.isLastWeek) this.nextWeek(event);
+        });
+        this.eventsGesture.on('swiperight', e => {
+          this.prevWeek(event);
+        });
+    }
+
+    ngOnDestroy() {
+        this.eventsGesture.destroy();
     }
 
     checkLastWeekHours() {

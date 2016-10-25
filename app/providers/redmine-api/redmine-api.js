@@ -1,4 +1,4 @@
-import { Component, Injectable, Inject } from 'angular2/core';
+import { Component, Injectable } from 'angular2/core';
 import { HTTP_PROVIDERS, Http, Request, RequestOptions, Headers, RequestMethod } from 'angular2/http';
 
 /*

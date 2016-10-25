@@ -1,5 +1,4 @@
-<ion-menu [content]="content">
-
+<ion-menu [content]="content" (ionOpen)="menuDragged()">
     <ion-content>
         <div *ngIf="user" class="user-info">
             <p class="avatar">

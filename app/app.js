@@ -1,9 +1,8 @@
-import { App, Platform, IonicApp, Storage, LocalStorage, MenuController } from 'ionic-angular';
+import { App, Platform, IonicApp, Storage, LocalStorage, MenuController, Events } from 'ionic-angular';
 import { StatusBar } from 'ionic-native';
 import { LoginPage } from './pages/login/login.js';
 import { ReportPage } from './pages/report/report.js';
 import { SettingsPage } from './pages/settings/settings.js';
-import { Injectable, Injector } from 'angular2/core';
 import { RedmineApi } from './providers/redmine-api/redmine-api.js';
 
 @App({
@@ -13,13 +12,14 @@ import { RedmineApi } from './providers/redmine-api/redmine-api.js';
 })
 export class MyApp {
     static get parameters() {
-        return [[IonicApp], [Platform], [MenuController], [RedmineApi]];
+        return [[IonicApp], [Platform], [MenuController], [RedmineApi], [Events]];
     }
 
-    constructor(app, platform, menu, _redminer) {
+    constructor(app, platform, menu, _redminer, events) {
         this.app = app;
         this.platform = platform;
         this.menu = menu;
+        this.events = events;
         this.menu.setUser = this.setUser.bind(this);
         this.initializeApp();
 
@@ -50,6 +50,11 @@ export class MyApp {
             }
             this.loadInfo();
         }
+    }
+
+    menuDragged() {
+        console.log('dragged 1');
+        //this.events.publish('menu:dragged', 'data');
     }
 
     loadInfo(){
