@@ -42,13 +42,14 @@
     </div>
     <div *ngIf="!loading" class="loading">
         <ion-list *ngIf="daygroups.length==7">
-            <div *ngFor="#group of daygroups">
+            <div *ngFor="#group of daygroups; #i=index">
                 <ion-item class="item-stable"
                           (click)="toggleGroup(group)"
                           [ngClass]="{active: true }">
                     &nbsp;
                     <span class="day">{{group.name}}</span>
                     <span class="day-hours" *ngIf="group.hours>0">{{group.hours | number : '1.0-2'}}h</span>
+                    <span class="day-hours" *ngIf="group.hours===0 && !group.weekend && group.lost">{{group.hours}}h</span>
                 </ion-item>
                 <ion-item class="item-accordion"
                           *ngFor="#issue of group.issues"

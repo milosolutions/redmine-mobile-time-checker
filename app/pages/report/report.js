@@ -28,6 +28,8 @@ export class ReportPage {
         this.hours = 0.0;
         this.daygroups = [];
         this.loading = true;
+        this.currentDay = moment().isoWeekday();
+        this.currentWeek = this.week;
         this.eventsGesture = Gesture;
 
         for (var i = 0; i < 7; i++) {
@@ -35,7 +37,9 @@ export class ReportPage {
                 name: moment().isoWeekday(i + 1).format("dddd"),
                 issues: [],
                 hours: 0,
-                hidden: i != 0
+                hidden: i != 0,
+                weekend: (i == 5 || i === 6) ? true : false,
+                lost: false
             };
         }
 
@@ -49,7 +53,6 @@ export class ReportPage {
     }
 
     ngOnInit() {
-        console.log(this.events);
         this.events.subscribe('menu:dragged', () => {
           console.log('menu has been dragged');
         });
@@ -179,6 +182,7 @@ export class ReportPage {
             group.hours += entry.hours;
             total += Number(entry.hours);
             let filter = group.issues.filter(issue => issue.id == entry.issue.id);
+
             if (filter.length == 0) {
                 group.issues.push({
                     project: entry.project.name,
@@ -188,18 +192,28 @@ export class ReportPage {
                 })
             } else {
                 let index = group.issues.indexOf(filter[0]);
+
                 group.issues[index].hours += entry.hours;
             }
         });
+        let currentWeek = this.currentWeek === this.week;
         this.hours = total;
 
-        this.daygroups.forEach(group => {
+        this.daygroups.forEach((group, index) => {
             group.issues.forEach(issue => {
                 this._redminer.load('issues/' + issue.id + '.json', this.key).then(data => {
                     issue.subject = data.issue.subject;
                 });
             })
+
+            if (currentWeek) {
+                group.lost = (index < this.currentDay-1) ? true : false;
+            } else {
+                group.lost = true;
+            }
+
         });
+
     }
 
     onPageWillEnter() {

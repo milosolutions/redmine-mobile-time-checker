@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Changelog to the project to track the changes 
 - Add gesture swipe evens to switch between the weeks
 - Replace a homepage's background image with a new one
+- Display missed hours to make it more prominent
 
 ### Changed
 - Removed unused modules from the components 
