@@ -11,6 +11,17 @@ ion-title {
   text-align: center;
 }
 
+.slide-content {
+  // position: absolute;
+  // top: 0;
+  // bottom: 0;
+  // right: 0;
+  // left: 70px;
+  // > * {
+  //   margin-left: -70px;
+  // }
+}
+
 .report-info {
   .navigation {
     height: 14rem;
@@ -86,6 +97,7 @@ ion-title {
 }
 
 .report-page {
+  position: relative;
   scroll-content {
     padding: 16px 0;
   }
@@ -103,6 +115,9 @@ ion-list {
       }
       .day-hours {
         float: right;
+      }
+      .missed-hours {
+        color: #aeaeae;
       }
     }
   }

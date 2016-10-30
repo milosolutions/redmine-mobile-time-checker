@@ -2,8 +2,14 @@
     <p class="logo">
         <img src="img/milosolutions.png"/>
     </p>
+    
+    <p class="authorize-title">Authorize by</p>
+    <ion-segment class="login-tabs" [(ngModel)]="authType" (change)=onChangeMethod(authType)>
+      <ion-segment-button value="key">API Key</ion-segment-button>
+      <ion-segment-button value="basic">Email / Password</ion-segment-button>
+    </ion-segment>
 
-    <form [ngFormModel]="authForm" (ngSubmit)="login(authForm.value)" class="login-form" >
+    <form *ngIf="authType === 'key' && key" [ngFormModel]="authFormKey" (ngSubmit)="login(authFormKey.value)" class="login-form" >
         <div *ngIf="url.hasError('required') && url.touched"
              class="error-box">This field is required</div>
         <div *ngIf="url.hasError('checkRedmineUrl') && url.touched"
@@ -13,24 +19,53 @@
             <ion-input type="text" class="url" value="" [ngFormControl]="url" id="first"
                        data-dependency="second" (change)="lower_url()"></ion-input>
         </ion-item>
-
         <div class="item-checkbox">
             <input type="checkbox" [ngFormControl]="secured"/>
             <ion-label>Secure https connection</ion-label>
         </div>
-
-        <div *ngIf="key.hasError('required') && key.touched"
-             class="error-box">This field is required</div>
+        
+        <div *ngIf="key.hasError('required') && key.touched" class="error-box">This field is required</div>
         <div *ngIf="key.hasError('checkKey') && key.touched"
              class="error-box">This API key is incorrect</div>
         <ion-item [class.error]="!key.valid && key.touched">
             <ion-label stacked>API Key</ion-label>
             <ion-input type="text" value="" [ngFormControl]="key" id="second"></ion-input>
         </ion-item>
+        
         <p class="submit">
-            <button light type="submit" [disabled]="!authForm.valid">Login</button>
+            <button light type="submit" [disabled]="!authFormKey.valid">Login</button>
         </p>
     </form>
 
+    <form *ngIf="authType === 'basic' && email" [ngFormModel]="authFormBasic" (ngSubmit)="login(authFormBasic.value)" class="login-form" >
+        <div *ngIf="url.hasError('required') && url.touched"
+             class="error-box">This field is required</div>
+        <div *ngIf="url.hasError('checkRedmineUrl') && url.touched"
+             class="error-box">Such Redmine URL doesn't exist!</div>
+        <ion-item [class.error]="!url.valid && url.touched">
+            <ion-label stacked>Redmine URL</ion-label>
+            <ion-input type="text" class="url" value="" (change)="lower_url()" [ngFormControl]="url"></ion-input>
+        </ion-item>
+        <div class="item-checkbox">
+            <input type="checkbox" [ngFormControl]="secured"/>
+            <ion-label>Secure https connection</ion-label>
+        </div>
+        
+        <div *ngIf="email.hasError('required') && email.touched"
+         class="error-box">This field is required</div>
+        <ion-item [class.error]="!email.valid && email.touched">
+            <ion-label stacked>Email</ion-label>
+            <ion-input type="email" class="email" value="" [ngFormControl]="email"></ion-input>
+        </ion-item>
 
+        <div *ngIf="password.hasError('required') && password.touched" class="error-box">This field is required</div>
+        <ion-item [class.error]="!password.valid && password.touched">
+            <ion-label stacked>Password</ion-label>
+            <ion-input type="password" class="password" value="" [ngFormControl]="password"></ion-input>
+        </ion-item>
+
+        <p class="submit">
+            <button light type="submit" [disabled]="!authFormBasic.valid">Login</button>
+        </p>
+    </form>
 </ion-content>

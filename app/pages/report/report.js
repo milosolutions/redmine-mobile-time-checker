@@ -53,16 +53,21 @@ export class ReportPage {
     }
 
     ngOnInit() {
-        this.events.subscribe('menu:dragged', () => {
-          console.log('menu has been dragged');
-        });
-        this.eventsGesture = new Gesture(this.content);
+        // this.events.subscribe('menu:dragged', () => {
+        //     console.log('menu has been dragged');
+        // });
+        let gesture = this.content.querySelector('#gesture');
+        this.eventsGesture = new Gesture(gesture);
         this.eventsGesture.listen();
+
         this.eventsGesture.on('swipeleft', e => {
-          if (!this.isLastWeek) this.nextWeek(event);
+            if (!this.isLastWeek) this.nextWeek(event);
         });
         this.eventsGesture.on('swiperight', e => {
-          this.prevWeek(event);
+            let calc = e.pointers[0].clientX - e.deltaX; 
+            if (calc > 60) {
+                this.prevWeek(event);
+            }
         });
     }
 

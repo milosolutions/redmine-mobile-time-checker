@@ -1,5 +1,5 @@
 import { App, Platform, IonicApp, Storage, LocalStorage, MenuController, Events } from 'ionic-angular';
-import { StatusBar } from 'ionic-native';
+import { StatusBar, Keyboard, InAppBrowser } from 'ionic-native';
 import { LoginPage } from './pages/login/login.js';
 import { ReportPage } from './pages/report/report.js';
 import { SettingsPage } from './pages/settings/settings.js';
@@ -77,6 +77,7 @@ export class MyApp {
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
             StatusBar.styleDefault();
+
             this.platform.isFullScreen = true;
         });
     }

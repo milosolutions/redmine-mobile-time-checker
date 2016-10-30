@@ -1,5 +1,5 @@
 import { Page, NavController, Storage, LocalStorage, MenuController } from 'ionic-angular';
-import { FORM_DIRECTIVES, FormBuilder,  ControlGroup, Validators, AbstractControl } from 'angular2/common';
+import { FORM_DIRECTIVES, FormBuilder, ControlGroup, Validators, AbstractControl, OnInit } from 'angular2/common';
 
 import { ReportPage } from '../report/report';
 import { RedmineApi } from '../../providers/redmine-api/redmine-api.js';
@@ -16,19 +16,23 @@ export class LoginPage {
     constructor(nav, _redmineService, menu, fb) {
         this.nav = nav;
         this.menu = menu;
+        this.fb = fb;
         this._redminer = _redmineService;
         this.local = new Storage(LocalStorage);
-
-        this.authForm = fb.group({
-            'url': ['', Validators.compose([Validators.required, this.checkRedmineUrl])],
+        this.authType = 'key';
+        this.authFormKey = this.fb.group({
+            'url': ['', Validators.compose([])],
             'secured': [false],
             'key': ['', Validators.compose([Validators.required])]
         });
-        this.url = this.authForm.controls['url'];
-        this.secured = this.authForm.controls['secured'];
-        this.key = this.authForm.controls['key'];
+        this.authFormBasic = this.fb.group({
+            'url': ['', Validators.compose([])],
+            'secured': [false],
+            'email': ['', Validators.compose([Validators.required])],
+            'password': ['', Validators.compose([Validators.required])] 
+        });
+        this.setFormFields(this.authType);
     }
-
     onPageWillEnter(){
         this.menu.enable(false);
     }
@@ -37,8 +41,20 @@ export class LoginPage {
         this.menu.enable(true);
     }
 
+    setFormFields(type) {
+        this.url = this.authFormKey.controls['url'] = this.authFormBasic.controls['url'];
+        this.secured = this.authFormKey.controls['secured'] = this.authFormBasic.controls['secured'];
+        this.key = this.authFormKey.controls['key'];
+        this.email = this.authFormBasic.controls['email'];
+        this.password = this.authFormBasic.controls['password'];
+    }
+
     lower_url(){
         this.url._value = this.url._value.toLowerCase();
+    }
+
+    onChangeMethod(type) {
+        this.setFormFields(type);
     }
 
     login(formData) {
@@ -46,7 +62,7 @@ export class LoginPage {
         url += formData.url.replace('www.','').replace(/\s/g,'')+'/';
         this._redminer.setRoot(url);
 
-        this._redminer.load('users/current.json', formData.key).then(
+        this._redminer.load('users/current.json', formData.key, formData.email, formData.password).then(
             data => {
                 let user = {};
                 user.name = data.user.firstname+' '+data.user.lastname;
