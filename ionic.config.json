@@ -2,6 +2,7 @@
   "name": "redmine-mobile-app",
   "app_id": "",
   "v2": true,
+  "typescript": true,
   "proxies": [
     {
       "path": "/api",

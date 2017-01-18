@@ -1,0 +1,96 @@
+@font-face {
+  font-family: 'Montserrat';
+  src: url(url('/Montserrat-UltraLight.eot'));
+  src: url(url('/Montserrat-UltraLight.eot?#iefix')) format('embedded-opentype'),
+  url(url('/Montserrat-UltraLight.woff')) format('woff'),
+  url(url('/Montserrat-UltraLight.ttf')) format('truetype'),
+  url(url('/Montserrat-UltraLight.svg')) format('svg');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url(url('/Montserrat-Light.eot'));
+  src: url(url('/Montserrat-Light.eot?#iefix')) format('embedded-opentype'),
+  url(url('/Montserrat-Light.woff')) format('woff'),
+  url(url('/Montserrat-Light.ttf')) format('truetype'),
+  url(url('/Montserrat-Light.svg')) format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url(url('/Montserrat-Regular.eot'));
+  src: url(url('/Montserrat-Regular.eot?#iefix')) format('embedded-opentype'),
+  url(url('/Montserrat-Regular.woff')) format('woff'),
+  url(url('/Montserrat-Regular.ttf')) format('truetype'),
+  url(url('/Montserrat-Regular.svg')) format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Icomoon';
+  src: url(url('/icomoon.eot'));
+  src: url(url('/icomoon.eot?#iefix')) format('embedded-opentype'),
+  url(url('/icomoon.woff')) format('woff'),
+  url(url('/icomoon.ttf')) format('truetype'),
+  url(url('/icomoon.svg')) format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Montserrat';
+  font-weight: normal;
+}
+
+ion-navbar {
+  &.toolbar {
+    min-height: 4.25rem;
+  }
+
+  .toolbar-background {
+    background: map-get($colors, primary);
+  }
+  .bar-button-default {
+    color: #fff;
+    &:hover {
+      color: #d66907!important;
+    }
+  }
+  .toolbar-title {
+    color: #fff;
+    font-weight: 400;
+    font-size: 1.75rem;
+  }
+}
+
+.icon {
+  display: inline-block;
+  font: normal normal normal 14px / 1 Icomoon;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+.icon-clock:before {
+  content: "\e900";
+}
+.icon-issues:before {
+  content: "\f149";
+}
+.icon-cog:before {
+  content: "\e901";
+}
+.icon-key:before {
+  content: "\e902";
+}
+.icon-menu:before {
+   content: "\e903";
+}
+.icon-off:before {
+  content: "\e904";
+}
+
+.icon-menu {
+  font-size: 2rem;
+}

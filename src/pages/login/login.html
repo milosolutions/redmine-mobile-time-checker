@@ -1,0 +1,88 @@
+<ion-content class="login-page" padding>
+    <p class="logo">
+        <img src="img/milosolutions.png"/>
+    </p>
+
+    <form [formGroup]="authForm" (ngSubmit)="loginKey(authForm.value)" class="login-form" *ngIf="keyLogin">
+        <div *ngIf="url.hasError('required') && url.touched"
+             class="error-box">This field is required
+        </div>
+        <div *ngIf="url.hasError('checkRedmineUrl') && url.touched"
+             class="error-box">Such Redmine URL doesn't exist!
+        </div>
+        <ion-item [class.error]="!url.valid && url.touched">
+            <ion-label stacked>Redmine URL</ion-label>
+            <ion-input type="text" class="url" value="" formControlName="url" id="first"
+                       data-dependency="second" (change)="lower_url()"></ion-input>
+        </ion-item>
+
+        <div class="item-checkbox">
+            <input type="checkbox" formControlName="secured"/>
+            <ion-label>Secure https connection</ion-label>
+        </div>
+
+        <div *ngIf="key.hasError('required') && key.touched"
+             class="error-box bottom">This field is required
+        </div>
+        <div *ngIf="key.hasError('checkKey') && key.touched"
+             class="error-box bottom">This API key is incorrect
+        </div>
+        <ion-item [class.error]="!key.valid && key.touched">
+            <ion-label stacked>API Key</ion-label>
+            <ion-input type="text" value="" formControlName="key" id="second"></ion-input>
+        </ion-item>
+        <p class="submit">
+            <button light type="submit" [disabled]="!authForm.valid">Login</button>
+        </p>
+    </form>
+
+    <form [formGroup]="authPwdForm" (ngSubmit)="loginPwd(authPwdForm.value)" class="login-form" *ngIf="!keyLogin">
+        <!--<div *ngIf="url.hasError('required') && url.touched"-->
+        <!--class="error-box">This field is required</div>-->
+        <!--<div *ngIf="url.hasError('checkRedmineUrl') && url.touched"-->
+        <!--class="error-box">Such Redmine URL doesn't exist!</div>-->
+        <!--<ion-item [class.error]="!url.valid && url.touched">-->
+        <!--<ion-label stacked>Redmine URL</ion-label>-->
+        <!--<ion-input type="text" class="url" value="" formControlName="url" id="first"-->
+        <!--data-dependency="second" (change)="lower_url()"></ion-input>-->
+        <!--</ion-item>-->
+
+        <!--<div class="item-checkbox">-->
+        <!--<input type="checkbox" formControlName="secured"/>-->
+        <!--<ion-label>Secure https connection</ion-label>-->
+        <!--</div>-->
+
+        <div *ngIf="username.hasError('required') && username.touched"
+             class="error-box">This field is required
+        </div>
+        <div *ngIf="username.hasError('invalid') && username.touched"
+             class="error-box">Username or password is incorrect
+        </div>
+        <ion-item [class.error]="!username.valid && username.touched">
+            <ion-label stacked>Username</ion-label>
+            <ion-input type="email" value="" formControlName="username" id="first"></ion-input>
+        </ion-item>
+        <div *ngIf="password.hasError('required') && password.touched"
+             class="error-box">This field is required
+        </div>
+        <div class="pwd-wrapper">
+            <ion-item [class.error]="!password.valid && password.touched">
+                <ion-label stacked>Password</ion-label>
+                <ion-input type="password" value="" formControlName="password" id="second" #input></ion-input>
+            </ion-item>
+            <ion-icon name="eye" (click)="showPassword(input)"></ion-icon>
+        </div>
+
+        <p class="submit">
+            <button light type="submit" [disabled]="!authPwdForm.valid">Login</button>
+        </p>
+    </form>
+
+    <p class="switch-login">
+        <button light (click)="switchLogin()">
+            <span *ngIf="keyLogin">Login with username/password</span>
+            <span *ngIf="!keyLogin">Login with API key</span>
+        </button>
+    </p>
+
+</ion-content>

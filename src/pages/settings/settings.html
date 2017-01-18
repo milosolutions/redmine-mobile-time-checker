@@ -1,0 +1,34 @@
+<!--<ion-navbar *navbar>-->
+    <!--<button menuToggle start>-->
+        <!--<i class="icon icon-menu"></i>-->
+    <!--</button>-->
+    <!--<ion-title class="settings-title">Settings</ion-title>-->
+<!--</ion-navbar>-->
+<ion-header>
+    <ion-navbar>
+        <button ion-button icon-only menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>
+            Settings
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding class="info">
+    <div class="bg-small" style="{{'background-image: url('+top_bg+')'}}">
+    </div>
+    <ion-list class="settings">
+        <ion-item >
+            <ion-label>{{settings[0].title}} <span class="pull-right" *ngIf="settings[0].date">{{settings[0].date | date: 'dd/MM/yyyy'}}</span></ion-label>
+            <ion-toggle [(ngModel)]="settings[0].toggled" (click)="update(settings[0])" checked="settings[0].toggled"></ion-toggle>
+        </ion-item>
+        <ion-item *ngFor="let s of settings | slice:1">
+            <ion-label>{{s.title}}</ion-label>
+            <ion-note item-right (click)="update(s)">
+                {{s.current}} <i class="fa fa-pencil"></i>
+            </ion-note>
+        </ion-item>
+    </ion-list>
+</ion-content>
