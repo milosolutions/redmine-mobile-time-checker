@@ -13,7 +13,7 @@
 <ion-header>
     <ion-navbar>
         <button ion-button icon-only menuToggle>
-            <ion-icon name="menu"></ion-icon>
+            <custom-icon set="ci" name="menu3"></custom-icon>
         </button>
         <ion-title>
             Work Report
@@ -27,7 +27,7 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding class="info report-page">
+<ion-content class="info report-page">
     <div class="bg-small report-info" style="background-image: url(img/report_top.jpg)">
         <ion-segment class="navigation">
             <ion-segment-button (click)="prevWeek($event)" [ngClass]="{'disabled': isFirstWeek}">
@@ -59,10 +59,12 @@
     <div *ngIf="!loading" class="loading">
         <ion-list *ngIf="daygroups.length==7">
             <div *ngFor="let group of daygroups">
-                <ion-item class="item-stable"
+                <ion-item class="item-stable"  *ngIf="!( (group.name == 'Sunday' || group.name == 'Saturday' ) && group.hours == 0 )"
                           (click)="toggleGroup(group)"
                           [ngClass]="{active: true }">
                     <span class="day">{{group.name}}</span>
+                    <ion-icon name="arrow-dropdown" *ngIf="group.hours>0 && isGroupHidden(group)"></ion-icon>
+                    <ion-icon name="arrow-dropup" *ngIf="group.hours>0 && !isGroupHidden(group)"></ion-icon>
                     <span class="day-hours" *ngIf="group.hours>0">{{group.hours | number : '1.1-2'}}h</span>
                 </ion-item>
                 <ion-item class="item-accordion"

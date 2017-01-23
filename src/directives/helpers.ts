@@ -1,9 +1,6 @@
-import { Alert, AlertController } from 'ionic-angular'
-
-export function runSettingsAlert(setting, nav, local) {
-    this.alertCtrl = AlertController;
+export function runSettingsAlert(setting, alertCtrl, local) {
     let type = setting.name == 'vacation' ? 'date' : 'text';
-    let prompt = this.alertCtrl.create({
+    let prompt = alertCtrl.create({
         title: setting.message,
         inputs: [
             {
@@ -23,11 +20,11 @@ export function runSettingsAlert(setting, nav, local) {
                         let validate = new Date(data[setting.name]) > new Date();
                         if (!validate) {
                             setting.toggled = false;
-                            let alert = this.alertCtrl.create({
+                            let alert = alertCtrl.create({
                                 title: 'Incorrect end vacation date!',
                                 buttons: ['OK']
                             });
-                            nav.present(alert);
+                            alert.present();
                             return
                         }
                         setting.date = new Date(data[setting.name]);
@@ -54,5 +51,5 @@ export function runSettingsAlert(setting, nav, local) {
             }
         ]
     });
-    nav.present(prompt);
+    prompt.present();
 }

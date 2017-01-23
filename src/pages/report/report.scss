@@ -103,11 +103,25 @@ ion-list {
       }
       .day-hours {
         float: right;
+        padding-right: 5px;
       }
+
+      ion-icon {
+        color: #f07306;
+        font-size: 2.7rem;
+        position: absolute;
+        right: 10px;
+        top: 9px;
+      }
+
     }
   }
 
-  .item-inner {
+  ion-item ion-label {
+    margin-right: 20px!important;
+  }
+
+  .item.item-block .item-inner {
     border-bottom: none;
   }
 

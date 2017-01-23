@@ -5,6 +5,15 @@
   margin-right: 3rem;
 }
 
+.bg-small.settings {
+  margin-top: 0;
+  background-image: url(../img/settings_top_2.jpg);
+
+  &.vacation {
+    background-image: url(../img/settings_top.jpg);
+  }
+}
+
 .info {
   text-align: center;
   h2{

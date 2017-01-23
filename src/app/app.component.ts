@@ -15,10 +15,10 @@ import * as moment from 'moment'
 export class MyApp {
     @ViewChild('content') private nav: NavController;
     pages = [
-        { title: 'Redmine report', component: ReportPage, icon: 'icon icon-clock' },
-        { title: 'Redmine Important Issues', component: ReportPage, icon: 'icon icon-issues' },
-        { title: 'Settings', component: SettingsPage, icon: 'icon icon-cog' },
-        { title: 'Log out', icon: 'icon icon-off'}
+        { title: 'Redmine report', component: ReportPage, icon: 'clock' },
+        { title: 'Important Issues', component: ReportPage, icon: 'important' },
+        { title: 'Settings', component: SettingsPage, icon: 'cog' },
+        { title: 'Log out', icon: 'officon'}
     ];
     rootPage: any = LoginPage;
     user: any = {};
@@ -63,13 +63,13 @@ export class MyApp {
             platform.isFullScreen = true;
 
             this.storage.get('key').then((result) => {
-                console.log(result);
                 let hasKey = result != null;
                 if (!hasKey) {
                     this.rootPage = LoginPage;
                 } else {
                     this._redminer.setKey(result);
-                    this.rootPage = ReportPage;
+                    // this.rootPage = ReportPage;
+                    this.rootPage = SettingsPage;
                     let offset = 1;
                     if (moment().month()>=2 && moment().month()<=9) {
                         let year = moment().year();

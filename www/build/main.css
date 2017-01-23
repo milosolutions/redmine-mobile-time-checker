@@ -4758,6 +4758,67 @@
   src: local("Noto Sans Bold"), local("Noto-Sans-Bold"), url("../assets/fonts/noto-sans-bold.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "myIconSet";
+  src: url("../assets/fonts/myIconSet.eot");
+  src: url("../assets/fonts/myIconSet.eot?#iefix") format("eot"), url("../assets/fonts/myIconSet.woff2") format("woff2"), url("../assets/fonts/myIconSet.woff") format("woff"), url("../assets/fonts/myIconSet.ttf") format("truetype"), url("../assets/fonts/myIconSet.svg#myIconSet") format("svg");
+}
+
+.ci-circleicon:before, .ci-clock:before, .ci-cog:before, .ci-currentkeyicon:before, .ci-custom-menu:before, .ci-important:before, .ci-menu:before, .ci-menu3:before, .ci-officon:before, .ci-vacation:before, .ci-warning:before {
+  font-family: "myIconSet";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  text-decoration: none;
+  text-transform: none;
+}
+
+.ci-circleicon:before {
+  content: "";
+}
+
+.ci-clock:before {
+  content: "";
+}
+
+.ci-cog:before {
+  content: "";
+}
+
+.ci-currentkeyicon:before {
+  content: "";
+}
+
+.ci-custom-menu:before {
+  content: "";
+}
+
+.ci-important:before {
+  content: "";
+}
+
+.ci-menu:before {
+  content: "";
+}
+
+.ci-menu3:before {
+  content: "";
+}
+
+.ci-officon:before {
+  content: "";
+}
+
+.ci-vacation:before {
+  content: "";
+}
+
+.ci-warning:before {
+  content: "";
+}
+
 ion-action-sheet {
   position: absolute;
   top: 0;
@@ -5750,16 +5811,19 @@ a,
 a div,
 a span,
 a ion-icon,
+a custom-icon,
 a ion-label,
 button,
 button div,
 button span,
 button ion-icon,
+button custom-icon,
 button ion-label,
 [tappable],
 [tappable] div,
 [tappable] span,
 [tappable] ion-icon,
+[tappable] custom-icon,
 [tappable] ion-label,
 input,
 textarea {
@@ -6254,14 +6318,14 @@ button[disabled],
   border-radius: 0;
 }
 
-[icon-left] ion-icon {
+[icon-left] ion-icon, [icon-left] custom-icon {
   font-size: 1.4em;
   line-height: .67;
   pointer-events: none;
   padding-right: .3em;
 }
 
-[icon-right] ion-icon {
+[icon-right] ion-icon, [icon-right] custom-icon {
   font-size: 1.4em;
   line-height: .67;
   pointer-events: none;
@@ -6273,7 +6337,7 @@ button[disabled],
   min-width: .9em;
 }
 
-[icon-only] ion-icon {
+[icon-only] ion-icon, [icon-only] custom-icon {
   padding: 0 .5em;
   font-size: 1.8em;
   line-height: .67;
@@ -6311,7 +6375,7 @@ button[disabled],
   font-size: 1.3rem;
 }
 
-.button-small-ios[icon-only] ion-icon {
+.button-small-ios[icon-only] ion-icon, .button-small-ios[icon-only] custom-icon {
   font-size: 1.3em;
 }
 
@@ -6646,7 +6710,7 @@ button[disabled],
   font-size: 1.3rem;
 }
 
-.button-small-md[icon-only] ion-icon {
+.button-small-md[icon-only] ion-icon, .button-small-md[icon-only] custom-icon {
   font-size: 1.4em;
 }
 
@@ -7128,7 +7192,7 @@ button[disabled],
   font-size: 1.3rem;
 }
 
-.button-small-wp[icon-only] ion-icon {
+.button-small-wp[icon-only] ion-icon, .button-small-wp[icon-only] custom-icon {
   font-size: 1.4em;
 }
 
@@ -9715,7 +9779,7 @@ ion-chip .button {
   border-radius: 50%;
 }
 
-ion-chip ion-icon {
+ion-chip ion-icon, ion-chip custom-icon {
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -9754,7 +9818,7 @@ ion-chip ion-avatar img {
   margin: 0 10px;
 }
 
-.chip-ios > ion-icon {
+.chip-ios > ion-icon, .chip-ios > custom-icon {
   color: #fff;
   background-color: #ea8932;
 }
@@ -9815,7 +9879,7 @@ ion-chip ion-avatar img {
   margin: 0 10px;
 }
 
-.chip-md > ion-icon {
+.chip-md > ion-icon, .chip-md > custom-icon {
   color: #fff;
   background-color: #ea8932;
 }
@@ -9876,7 +9940,7 @@ ion-chip ion-avatar img {
   margin: 0 10px;
 }
 
-.chip-wp > ion-icon {
+.chip-wp > ion-icon, .chip-wp > custom-icon {
   color: #fff;
   background-color: #ea8932;
 }
@@ -10370,7 +10434,7 @@ ion-datetime {
   contain: strict;
 }
 
-.fab ion-icon {
+.fab ion-icon, .fab custom-icon {
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
@@ -11064,12 +11128,12 @@ ion-col[width-90] {
   }
 }
 
-ion-icon {
+ion-icon, custom-icon {
   display: inline-block;
   font-size: 1.2em;
 }
 
-ion-icon[small] {
+ion-icon[small], custom-icon[small] {
   min-height: 1.1em;
   font-size: 1.1em;
 }
@@ -11634,32 +11698,37 @@ ion-input.item {
   align-items: flex-start;
 }
 
-.item > ion-icon[small]:first-child,
-.item-inner > ion-icon[small]:first-child {
+.item > ion-icon[small]:first-child, .item > custom-icon[small]:first-child,
+.item-inner > ion-icon[small]:first-child,
+.item-inner > custom-icon[small]:first-child {
   min-width: 18px;
 }
 
-.item > ion-icon:first-child,
-.item-inner > ion-icon:first-child {
+.item > ion-icon:first-child, .item > custom-icon:first-child,
+.item-inner > ion-icon:first-child,
+.item-inner > custom-icon:first-child {
   min-width: 24px;
   text-align: center;
 }
 
-.item > ion-icon,
-.item-inner > ion-icon {
+.item > ion-icon, .item > custom-icon,
+.item-inner > ion-icon,
+.item-inner > custom-icon {
   min-height: 2.8rem;
   font-size: 2.8rem;
   line-height: 1;
 }
 
-.item > ion-icon[large],
-.item-inner > ion-icon[large] {
+.item > ion-icon[large], .item > custom-icon[large],
+.item-inner > ion-icon[large],
+.item-inner > custom-icon[large] {
   min-height: 3.2rem;
   font-size: 3.2rem;
 }
 
-.item > ion-icon[small],
-.item-inner > ion-icon[small] {
+.item > ion-icon[small], .item > custom-icon[small],
+.item-inner > ion-icon[small],
+.item-inner > custom-icon[small] {
   min-height: 1.8rem;
   font-size: 1.8rem;
 }
@@ -11711,7 +11780,7 @@ ion-reorder {
   touch-action: manipulation;
 }
 
-ion-reorder ion-icon {
+ion-reorder ion-icon, ion-reorder custom-icon {
   pointer-events: none;
 }
 
@@ -11796,7 +11865,7 @@ ion-item-options:not([icon-left]) .button:not([icon-only]) .button-inner {
   flex-direction: column;
 }
 
-ion-item-options:not([icon-left]) .button:not([icon-only]) ion-icon {
+ion-item-options:not([icon-left]) .button:not([icon-only]) ion-icon, ion-item-options:not([icon-left]) .button:not([icon-only]) custom-icon {
   padding-right: 0;
   padding-bottom: .3em;
   padding-left: 0;
@@ -11925,8 +11994,9 @@ ion-item-sliding.active-swipe-left button[expandable] {
   margin: 8px 8px 8px 8px;
 }
 
-.item-ios ion-icon[item-left],
-.item-ios ion-icon[item-right] {
+.item-ios ion-icon[item-left], .item-ios custom-icon[item-left],
+.item-ios ion-icon[item-right],
+.item-ios custom-icon[item-right] {
   margin-top: 9px;
   margin-bottom: 8px;
   margin-left: 0;
@@ -11938,7 +12008,7 @@ ion-item-sliding.active-swipe-left button[expandable] {
   font-size: 1.3rem;
 }
 
-.item-ios .item-button[icon-only] ion-icon,
+.item-ios .item-button[icon-only] ion-icon, .item-ios .item-button[icon-only] custom-icon,
 .item-ios .item-button[icon-only] {
   padding: 0 1px;
 }
@@ -12208,8 +12278,9 @@ ion-item-group .item-wrapper:last-child .item-ios .item-inner {
   margin: 9px 8px 9px 0;
 }
 
-.item-md ion-icon[item-left],
-.item-md ion-icon[item-right] {
+.item-md ion-icon[item-left], .item-md custom-icon[item-left],
+.item-md ion-icon[item-right],
+.item-md custom-icon[item-right] {
   margin-top: 11px;
   margin-bottom: 10px;
   margin-left: 0;
@@ -12221,13 +12292,14 @@ ion-item-group .item-wrapper:last-child .item-ios .item-inner {
   font-size: 1.2rem;
 }
 
-.item-md .item-button[icon-only] ion-icon,
+.item-md .item-button[icon-only] ion-icon, .item-md .item-button[icon-only] custom-icon,
 .item-md .item-button[icon-only] {
   padding: 0 1px;
 }
 
-.item-md ion-icon[item-left] + .item-inner,
-.item-md ion-icon[item-left] + .item-input {
+.item-md ion-icon[item-left] + .item-inner, .item-md custom-icon[item-left] + .item-inner,
+.item-md ion-icon[item-left] + .item-input,
+.item-md custom-icon[item-left] + .item-input {
   margin-left: 24px;
 }
 
@@ -12492,8 +12564,9 @@ ion-item-group .item-md .item-wrapper:last-child .item-inner {
   margin: 9px 8px 9px 0;
 }
 
-.item-wp ion-icon[item-left],
-.item-wp ion-icon[item-right] {
+.item-wp ion-icon[item-left], .item-wp custom-icon[item-left],
+.item-wp ion-icon[item-right],
+.item-wp custom-icon[item-right] {
   margin-top: 11px;
   margin-bottom: 10px;
   margin-left: 0;
@@ -12505,7 +12578,7 @@ ion-item-group .item-md .item-wrapper:last-child .item-inner {
   font-size: 1.2rem;
 }
 
-.item-wp .item-button[icon-only] ion-icon,
+.item-wp .item-button[icon-only] ion-icon, .item-wp .item-button[icon-only] custom-icon,
 .item-wp .item-button[icon-only] {
   padding: 0 1px;
 }
@@ -12515,8 +12588,9 @@ ion-item-group .item-md .item-wrapper:last-child .item-inner {
   line-height: 1.5;
 }
 
-.item-wp ion-icon[item-left] + .item-inner,
-.item-wp ion-icon[item-left] + .item-input {
+.item-wp ion-icon[item-left] + .item-inner, .item-wp custom-icon[item-left] + .item-inner,
+.item-wp ion-icon[item-left] + .item-input,
+.item-wp custom-icon[item-left] + .item-input {
   margin-left: 8px;
 }
 
@@ -14914,7 +14988,7 @@ ion-range ion-label {
   flex: initial;
 }
 
-ion-range ion-icon {
+ion-range ion-icon, ion-range custom-icon {
   min-height: 2.4rem;
   font-size: 2.4rem;
   line-height: 1;
@@ -16334,7 +16408,7 @@ ion-segment {
   background-color: transparent;
 }
 
-.segment-ios .segment-button ion-icon {
+.segment-ios .segment-button ion-icon, .segment-ios .segment-button custom-icon {
   font-size: 2.6rem;
   line-height: 2.8rem;
 }
@@ -16391,7 +16465,7 @@ ion-segment {
   line-height: 2.5rem;
 }
 
-.toolbar-ios .segment-button ion-icon {
+.toolbar-ios .segment-button ion-icon, .toolbar-ios .segment-button custom-icon {
   font-size: 2.2rem;
   line-height: 2.4rem;
 }
@@ -16598,7 +16672,7 @@ ion-segment {
   transition: 100ms all linear;
 }
 
-.segment-md .segment-button ion-icon {
+.segment-md .segment-button ion-icon, .segment-md .segment-button custom-icon {
   font-size: 2.6rem;
   line-height: 4rem;
 }
@@ -16714,7 +16788,7 @@ ion-segment {
   opacity: 1;
 }
 
-.segment-wp .segment-button ion-icon {
+.segment-wp .segment-button ion-icon, .segment-wp .segment-button custom-icon {
   font-size: 2.6rem;
   line-height: 4rem;
 }
@@ -18093,6 +18167,7 @@ ion-spinner.spinner-paused svg {
 
 .tab-disabled ion-badge,
 .tab-disabled ion-icon,
+.tab-disabled custom-icon,
 .tab-disabled span {
   opacity: .4;
 }
@@ -18237,8 +18312,9 @@ ion-spinner.spinner-paused svg {
   line-height: 1.1;
 }
 
-.tabs-ios[tabsLayout=icon-right] .tab-button ion-icon,
-.tabs-ios[tabsLayout=icon-left] .tab-button ion-icon {
+.tabs-ios[tabsLayout=icon-right] .tab-button ion-icon, .tabs-ios[tabsLayout=icon-right] .tab-button custom-icon,
+.tabs-ios[tabsLayout=icon-left] .tab-button ion-icon,
+.tabs-ios[tabsLayout=icon-left] .tab-button custom-icon {
   min-width: 24px;
   height: 26px;
   font-size: 24px;
@@ -18677,8 +18753,9 @@ ion-spinner.spinner-paused svg {
   padding-bottom: 10px;
 }
 
-.tabs-wp[tabsLayout=icon-right] .tab-button ion-icon,
-.tabs-wp[tabsLayout=icon-left] .tab-button ion-icon {
+.tabs-wp[tabsLayout=icon-right] .tab-button ion-icon, .tabs-wp[tabsLayout=icon-right] .tab-button custom-icon,
+.tabs-wp[tabsLayout=icon-left] .tab-button ion-icon,
+.tabs-wp[tabsLayout=icon-left] .tab-button custom-icon {
   min-width: 24px;
 }
 
@@ -19592,14 +19669,14 @@ ion-navbar.toolbar {
   opacity: .4;
 }
 
-.bar-button-ios.bar-button-icon-left ion-icon {
+.bar-button-ios.bar-button-icon-left ion-icon, .bar-button-ios.bar-button-icon-left custom-icon {
   padding-right: .3em;
   font-size: 1.4em;
   line-height: .67;
   pointer-events: none;
 }
 
-.bar-button-ios.bar-button-icon-right ion-icon {
+.bar-button-ios.bar-button-icon-right ion-icon, .bar-button-ios.bar-button-icon-right custom-icon {
   padding-left: .4em;
   font-size: 1.4em;
   line-height: .67;
@@ -19611,7 +19688,7 @@ ion-navbar.toolbar {
   min-width: .9em;
 }
 
-.bar-button-ios[icon-only] ion-icon {
+.bar-button-ios[icon-only] ion-icon, .bar-button-ios[icon-only] custom-icon {
   padding: 0 .1em;
   font-size: 1.8em;
   line-height: .67;
@@ -19651,7 +19728,7 @@ ion-navbar.toolbar {
   min-width: 36px;
 }
 
-.bar-button-menutoggle-ios ion-icon {
+.bar-button-menutoggle-ios ion-icon, .bar-button-menutoggle-ios custom-icon {
   padding: 0 6px;
   font-size: 2.8rem;
 }
@@ -22158,14 +22235,14 @@ ion-navbar.toolbar {
   background-color: #515151;
 }
 
-.bar-button-md.bar-button-icon-left ion-icon {
+.bar-button-md.bar-button-icon-left ion-icon, .bar-button-md.bar-button-icon-left custom-icon {
   padding-right: .3em;
   font-size: 1.4em;
   line-height: .67;
   pointer-events: none;
 }
 
-.bar-button-md.bar-button-icon-right ion-icon {
+.bar-button-md.bar-button-icon-right ion-icon, .bar-button-md.bar-button-icon-right custom-icon {
   padding-left: .4em;
   font-size: 1.4em;
   line-height: .67;
@@ -22176,7 +22253,7 @@ ion-navbar.toolbar {
   padding: 0;
 }
 
-.bar-button-md[icon-only] ion-icon {
+.bar-button-md[icon-only] ion-icon, .bar-button-md[icon-only] custom-icon {
   padding: 0 .1em;
   min-width: 28px;
   font-size: 1.8em;
@@ -22207,7 +22284,7 @@ ion-navbar.toolbar {
   min-width: 44px;
 }
 
-.bar-button-menutoggle-md ion-icon {
+.bar-button-menutoggle-md ion-icon, .bar-button-menutoggle-md custom-icon {
   padding: 0 6px;
   font-size: 2.4rem;
 }
@@ -24581,14 +24658,14 @@ ion-navbar.toolbar {
   background-color: #141414;
 }
 
-.bar-button-wp.bar-button-icon-left ion-icon {
+.bar-button-wp.bar-button-icon-left ion-icon, .bar-button-wp.bar-button-icon-left custom-icon {
   padding-right: .3em;
   font-size: 1.4em;
   line-height: .67;
   pointer-events: none;
 }
 
-.bar-button-wp.bar-button-icon-right ion-icon {
+.bar-button-wp.bar-button-icon-right ion-icon, .bar-button-wp.bar-button-icon-right custom-icon {
   padding-left: .4em;
   font-size: 1.4em;
   line-height: .67;
@@ -24599,7 +24676,7 @@ ion-navbar.toolbar {
   padding: 0;
 }
 
-.bar-button-wp[icon-only] ion-icon {
+.bar-button-wp[icon-only] ion-icon, .bar-button-wp[icon-only] custom-icon {
   padding: 0 .1em;
   min-width: 28px;
   font-size: 1.8em;
@@ -24630,7 +24707,7 @@ ion-navbar.toolbar {
   min-width: 44px;
 }
 
-.bar-button-menutoggle-wp ion-icon {
+.bar-button-menutoggle-wp ion-icon, .bar-button-menutoggle-wp custom-icon {
   padding: 0 6px;
   font-size: 2.4rem;
 }
@@ -27105,6 +27182,12 @@ sub {
   font-style: normal;
 }
 
+custom-icon {
+  font-size: 1em;
+  top: 2px;
+  position: relative;
+}
+
 body {
   font-family: 'Montserrat';
   font-weight: normal;
@@ -27342,7 +27425,7 @@ ion-content.login-page {
   position: relative;
 }
 
-.login-form .pwd-wrapper ion-icon {
+.login-form .pwd-wrapper ion-icon, .login-form .pwd-wrapper custom-icon {
   position: absolute;
   top: 30px;
   font-size: 23px;
@@ -27399,7 +27482,7 @@ ion-title {
   height: 14rem;
 }
 
-.report-info .navigation ion-icon {
+.report-info .navigation ion-icon, .report-info .navigation custom-icon {
   line-height: 2rem;
   padding-top: 2rem;
   font-size: 2rem;
@@ -27497,9 +27580,22 @@ ion-list .item.item-stable .day {
 
 ion-list .item.item-stable .day-hours {
   float: right;
+  padding-right: 5px;
 }
 
-ion-list .item-inner {
+ion-list .item.item-stable ion-icon, ion-list .item.item-stable custom-icon {
+  color: #f07306;
+  font-size: 2.7rem;
+  position: absolute;
+  right: 10px;
+  top: 9px;
+}
+
+ion-list ion-item ion-label {
+  margin-right: 20px !important;
+}
+
+ion-list .item.item-block .item-inner {
   border-bottom: none;
 }
 
@@ -27636,6 +27732,15 @@ ion-list .item.item-accordion .hours .issue-id {
 
 .settings-title {
   margin-right: 3rem;
+}
+
+.bg-small.settings {
+  margin-top: 0;
+  background-image: url(../img/settings_top_2.jpg);
+}
+
+.bg-small.settings.vacation {
+  background-image: url(../img/settings_top.jpg);
 }
 
 .info {

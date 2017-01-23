@@ -4,6 +4,8 @@ import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http'
 import {Storage} from '@ionic/storage';
 
+import { CustomIconsModule } from 'ionic2-custom-icons';
+
 import {MyApp} from './app.component';
 import {LoginPage} from '../pages/login/login';
 import {ReportPage} from '../pages/report/report';
@@ -23,7 +25,8 @@ function provideStorage() {
     imports: [
         IonicModule.forRoot(MyApp),
         FormsModule,
-        HttpModule
+        HttpModule,
+        CustomIconsModule
     ],
     bootstrap: [IonicApp],
     entryComponents: [

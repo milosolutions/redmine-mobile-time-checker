@@ -1,6 +1,11 @@
 {
   "private": true,
   "scripts": {
+    "ionic2-custom-icons": "ionic2-custom-icons",
+    "build:before": "ionic2-custom-icons",
+    "serve:before": "ionic2-custom-icons",
+    "ionic:build:before": "ionic2-custom-icons",
+    "ionic:serve:before": "ionic2-custom-icons",
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
     "ionic:build": "ionic-app-scripts build",
@@ -21,6 +26,7 @@
     "@ionic/storage": "^1.1.7",
     "ionic-angular": "2.0.0-rc.5",
     "ionic-native": "2.2.11",
+    "ionic2-custom-icons": "^0.3.1",
     "ionicons": "3.0.0",
     "moment": "^2.17.1",
     "rxjs": "5.0.0-beta.12",
@@ -37,6 +43,11 @@
     "ionic-gulp-sass-build": "^1.0.0",
     "ionic-gulp-webpack-build": "^1.0.0",
     "typescript": "2.0.9"
+  },
+  "config": {
+    "ionic_copy": "./config/copy.config.js",
+    "ionic_sass": "./config/sass.config.js",
+    "custom_icons": "./config/custom-icons.config.js"
   },
   "name": "redmine-mobile-app",
   "description": "redmine-mobile-app: An Ionic project",
