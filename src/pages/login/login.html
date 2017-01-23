@@ -37,20 +37,18 @@
     </form>
 
     <form [formGroup]="authPwdForm" (ngSubmit)="loginPwd(authPwdForm.value)" class="login-form" *ngIf="!keyLogin">
-        <!--<div *ngIf="url.hasError('required') && url.touched"-->
-        <!--class="error-box">This field is required</div>-->
-        <!--<div *ngIf="url.hasError('checkRedmineUrl') && url.touched"-->
-        <!--class="error-box">Such Redmine URL doesn't exist!</div>-->
-        <!--<ion-item [class.error]="!url.valid && url.touched">-->
-        <!--<ion-label stacked>Redmine URL</ion-label>-->
-        <!--<ion-input type="text" class="url" value="" formControlName="url" id="first"-->
-        <!--data-dependency="second" (change)="lower_url()"></ion-input>-->
-        <!--</ion-item>-->
-
-        <!--<div class="item-checkbox">-->
-        <!--<input type="checkbox" formControlName="secured"/>-->
-        <!--<ion-label>Secure https connection</ion-label>-->
-        <!--</div>-->
+        <div *ngIf="url.hasError('required') && url.touched"
+             class="error-box">This field is required</div>
+        <div *ngIf="url.hasError('checkRedmineUrl') && url.touched"
+             class="error-box">Such Redmine URL doesn't exist!</div>
+        <ion-item [class.error]="!url.valid && url.touched">
+            <ion-label stacked>Redmine URL</ion-label>
+            <ion-input type="text" class="url" value="" (change)="lower_url()" formControlName="url"></ion-input>
+        </ion-item>
+        <div class="item-checkbox">
+            <input type="checkbox" formControlName="secured"/>
+            <ion-label>Secure https connection</ion-label>
+        </div>
 
         <div *ngIf="username.hasError('required') && username.touched"
              class="error-box">This field is required

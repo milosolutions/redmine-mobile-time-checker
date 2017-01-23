@@ -1,7 +1,8 @@
-import { NavController, AlertController } from 'ionic-angular';
+import { NavController, AlertController, Events } from 'ionic-angular';
+import {Gesture} from 'ionic-angular/gestures/gesture';
 import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage';
-import { SettingsPage } from '../settings/settings'
+import { OnInit, OnDestroy, ElementRef, ViewChild } from '@angular/core';
 import { RedmineApi } from '../../providers/redmine-api/redmine-api'
 import { runSettingsAlert } from '../../directives/helpers'
 import * as moment from 'moment'
@@ -11,6 +12,10 @@ import * as moment from 'moment'
     providers: [RedmineApi, Storage]
 })
 export class ReportPage {
+    @ViewChild('gesture')
+    private _slideElementRef: ElementRef;
+    private _slideElement: HTMLElement;
+    private _slideGesture: Gesture;
     key: any;
     entries_count: any;
     week: number;
@@ -24,7 +29,8 @@ export class ReportPage {
 
 
     constructor(private nav: NavController, private _redminer: RedmineApi,
-                private alertCtrl: AlertController, private storage: Storage) {
+                private alertCtrl: AlertController, private storage: Storage,
+                private events: Events) {
         this.entries_count = 1;
         this.week = moment().isoWeek();
         this.isLastWeek = true;
@@ -51,6 +57,29 @@ export class ReportPage {
                 this.fetchReport();
             }
         })
+    }
+
+    ngOnInit() {
+        this.events.subscribe('menu:dragged', () => {
+            console.log('menu has been dragged');
+        });
+        this._slideElement = this._slideElementRef.nativeElement;
+        this._slideGesture = new Gesture(this._slideElement);
+        this._slideGesture.listen();
+
+        this._slideGesture.on('swipeleft', e => {
+            if (!this.isLastWeek) this.nextWeek(event);
+        });
+        this._slideGesture.on('swiperight', e => {
+            let calc = e.pointers[0].clientX - e.deltaX;
+            if (calc > 60) {
+                this.prevWeek(event);
+            }
+        });
+    }
+
+    ngOnDestroy() {
+        this._slideGesture.destroy();
     }
 
     checkLastWeekHours() {

@@ -30,6 +30,8 @@ export class LoginPage {
             'key': ['', Validators.compose([Validators.required])]
         });
         this.authPwdForm = fb.group({
+            'url': ['redmine.milosolutions.com', Validators.compose([Validators.required])],
+            'secured': [true],
             'username': ['', Validators.compose([Validators.required])],
             'password': ['', Validators.compose([Validators.required])]
         });
@@ -93,7 +95,8 @@ export class LoginPage {
     }
 
     loginPwd(formData) {
-        let url = 'https://redmine.milosolutions.com';
+        let url = formData.secured ? 'https://' : 'http://';
+        url += formData.url.replace('www.', '').replace(/\s/g, '') + '/';
         this._redminer.setRoot(url);
         let username = formData.username.toLowerCase();
 

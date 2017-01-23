@@ -1,5 +1,4 @@
 {
-  "private": true,
   "scripts": {
     "ionic2-custom-icons": "ionic2-custom-icons",
     "build:before": "ionic2-custom-icons",

@@ -6,9 +6,12 @@
 }
 
 ion-content.login-page {
-  background: url('../img/login_bg.png') no-repeat center;
+  background: url('../../img/login_bg_2.jpg') no-repeat bottom center;
   background-size: cover;
   text-align: center;
+}
+.authorize-title {
+  color: #f3f3f3;
 }
 
 @media(min-width:376px){
@@ -16,8 +19,22 @@ ion-content.login-page {
     width: 80%;
     margin: auto;
   }
+  .login-tabs {
+    width: 80%;
+    margin: auto;
+  }
 }
-
+.login-tabs {
+  margin-bottom: 30px;
+  .segment-button {
+    color: #f3f3f3;
+    border-color: #f3f3f3;
+    &.segment-activated {
+      color: #000;
+      background: #f3f3f3;
+    }
+  }
+}
 .login-form {
   position: relative;
 
@@ -71,7 +88,7 @@ ion-content.login-page {
 
     &.item-input {
       ion-label {
-        color: #afb1ca;
+        color: #f3f3f3;
         font-size: 1.4rem;
         font-weight: 300;
       }
@@ -92,6 +109,7 @@ ion-content.login-page {
       font-size: 1.2rem;
       font-weight: 300;
       display: inline-block;
+      color: #f3f3f3;
     }
 
     min-height: 3rem;

@@ -1,6 +1,7 @@
-import { Platform, IonicApp, MenuController, NavController } from 'ionic-angular';
+import { Platform, IonicApp, MenuController, NavController, Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import { StatusBar } from 'ionic-native';
+import { StatusBar, Keyboard, InAppBrowser } from 'ionic-native';
+
 import { LoginPage } from '../pages/login/login';
 import { ReportPage } from '../pages/report/report';
 import { SettingsPage } from '../pages/settings/settings';
@@ -24,7 +25,7 @@ export class MyApp {
     user: any = {};
 
     constructor(private platform: Platform, private _redminer: RedmineApi, private storage: Storage,
-                public menu: MenuController) {
+                public menu: MenuController, private events: Events) {
         // this.app = app;
         // this.platform = platform;
         // this.menu = menu;
@@ -38,6 +39,11 @@ export class MyApp {
         //     { title: 'Settings', component: SettingsPage, icon: 'icon icon-cog' },
         //     { title: 'Log out', icon: 'icon icon-off'}
         // ];
+    }
+
+    menuDragged() {
+        console.log('dragged 1');
+        //this.events.publish('menu:dragged', 'data');
     }
 
     loadInfo(key){
@@ -68,8 +74,8 @@ export class MyApp {
                     this.rootPage = LoginPage;
                 } else {
                     this._redminer.setKey(result);
-                    // this.rootPage = ReportPage;
-                    this.rootPage = SettingsPage;
+                    this.rootPage = ReportPage;
+                    // this.rootPage = SettingsPage;
                     let offset = 1;
                     if (moment().month()>=2 && moment().month()<=9) {
                         let year = moment().year();
