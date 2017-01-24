@@ -61,7 +61,7 @@
                           *ngFor="let issue of group.issues"
                           [hidden]="isGroupHidden(group)">
                     <div class="info">
-                        <p class="header">{{issue.subject}}</p>
+                        <p class="header">{{issue.subject}} {{issue.priority}}<small *ngIf="issue.priority>2">Urgent</small></p>
                         <p>{{issue.project}}</p>
                     </div>
                     <div class="hours">

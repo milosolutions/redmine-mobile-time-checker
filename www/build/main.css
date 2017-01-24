@@ -27253,13 +27253,13 @@ ion-navbar .toolbar-title {
 
 .logo {
   text-align: center;
-  padding: 15vh 0 8.5vh;
+  padding: 3.5rem 0 5rem;
   max-width: 45%;
   margin: auto;
 }
 
 ion-content.login-page {
-  background: url("../../img/login_bg_2.jpg") no-repeat bottom center;
+  background: url("../img/login_bg_2.jpg") no-repeat bottom center;
   background-size: cover;
   text-align: center;
 }
@@ -27302,7 +27302,7 @@ ion-content.login-page {
   top: -4rem;
   background: #fe0000;
   padding: 1rem;
-  color: #fff;
+  color: #f3f3f3;
   left: 50%;
   border-radius: 1rem;
   -webkit-transform: translate(-50%, 0);
@@ -27343,7 +27343,7 @@ ion-content.login-page {
 
 .login-form .item.item-input, .login-form .item.item-checkbox {
   background-color: transparent;
-  color: #afb1ca;
+  color: #f3f3f3;
 }
 
 .login-form .item.item-input ion-label {
@@ -27381,7 +27381,7 @@ ion-content.login-page {
 
 .login-form .item-checkbox ion-checkbox .checkbox-icon, .login-form .item-checkbox input[type='checkbox'] .checkbox-icon {
   background-color: transparent;
-  border: 1px solid #bbb;
+  border: 1px solid #f3f3f3;
   border-radius: 0;
 }
 
@@ -27398,7 +27398,7 @@ ion-content.login-page {
 }
 
 .login-form .item-checkbox input[type="checkbox"]:focus:after {
-  border-color: #bbb;
+  border-color: #f3f3f3;
 }
 
 .login-form .item-checkbox input[type="checkbox"]:after {
@@ -27408,7 +27408,7 @@ ion-content.login-page {
   height: 16px;
   margin-top: -2px;
   margin-right: 5px;
-  border: 1px solid #bbb;
+  border: 1px solid #f3f3f3;
   transition: 240ms;
 }
 
@@ -27431,7 +27431,7 @@ ion-content.login-page {
 }
 
 .login-form .item-checkbox input[type="checkbox"]:checked:before {
-  border-color: #bbb;
+  border-color: #f3f3f3;
   /* IE 9 */
   -webkit-transform: rotate(45deg);
   /* Chrome, Safari, Opera */
@@ -27471,14 +27471,18 @@ ion-content.login-page {
 }
 
 .switch-login {
-  position: absolute;
-  bottom: 1vh;
-  left: 0;
+  margin-top: 1rem;
   width: 100%;
   text-align: center;
 }
 
+.switch-login > span {
+  color: #f3f3f3;
+  font-weight: 300;
+}
+
 .switch-login button {
+  margin-top: 1rem;
   background-color: #cbcbcb;
   text-transform: none;
   font-size: 1.15rem;
@@ -27667,6 +27671,24 @@ ion-list .item.item-accordion .info p {
 ion-list .item.item-accordion .info p.header {
   color: #222;
   font-size: 1.6rem;
+}
+
+ion-list .item.item-accordion .info p.header small {
+  background-color: #ff0000;
+  padding: 0.15rem 1rem;
+  border-radius: 0.65rem;
+  margin-left: 1rem;
+  position: relative;
+  top: -0.15rem;
+  color: #fff;
+}
+
+ion-list .item.item-accordion .info p.header small.green {
+  background-color: #8bc34a;
+}
+
+ion-list .item.item-accordion .info p.header small.yellow {
+  background-color: #ffc107;
 }
 
 ion-list .item.item-accordion .hours {

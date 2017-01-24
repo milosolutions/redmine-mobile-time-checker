@@ -170,6 +170,24 @@ ion-list {
         &.header {
           color: #222;
           font-size: 1.6rem;
+
+          small {
+            background-color: #ff0000;
+            padding: 0.15rem 1rem;
+            border-radius: 0.65rem;
+            margin-left: 1rem;
+            position: relative;
+            top: -0.15rem;
+            color: #fff;
+
+            &.green {
+              background-color: #8bc34a;
+            }
+
+            &.yellow {
+              background-color: #ffc107;
+            }
+          }
         }
       }
     }

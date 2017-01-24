@@ -1,6 +1,7 @@
 import {NavController, MenuController} from 'ionic-angular';
 import {Component} from '@angular/core';
 import {Storage} from '@ionic/storage';
+import { Keyboard } from 'ionic-native';
 import {FormBuilder, Validators, AbstractControl} from '@angular/forms';
 
 import {ReportPage} from '../report/report';
@@ -52,6 +53,8 @@ export class LoginPage {
 
     showPassword(input: any): any {
         input.type = input.type === 'password' ?  'text' : 'password';
+        input.setFocus();
+        Keyboard.show()
     }
 
     switchLogin() {

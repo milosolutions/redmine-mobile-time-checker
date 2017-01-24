@@ -1,10 +1,11 @@
 import { Platform, IonicApp, MenuController, NavController, Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import { StatusBar, Keyboard, InAppBrowser } from 'ionic-native';
+import { StatusBar, Keyboard, InAppBrowser, Splashscreen } from 'ionic-native';
 
 import { LoginPage } from '../pages/login/login';
 import { ReportPage } from '../pages/report/report';
 import { SettingsPage } from '../pages/settings/settings';
+import { ImportantIssuesPage } from '../pages/important_issues/important_issues';
 import { Component, ViewChild, Injectable, Injector } from '@angular/core';
 import { RedmineApi } from '../providers/redmine-api/redmine-api';
 import * as moment from 'moment'
@@ -17,7 +18,7 @@ export class MyApp {
     @ViewChild('content') private nav: NavController;
     pages = [
         { title: 'Redmine report', component: ReportPage, icon: 'clock' },
-        { title: 'Important Issues', component: ReportPage, icon: 'important' },
+        { title: 'Important Issues', component: ImportantIssuesPage, icon: 'important' },
         { title: 'Settings', component: SettingsPage, icon: 'cog' },
         { title: 'Log out', icon: 'officon'}
     ];
@@ -65,7 +66,9 @@ export class MyApp {
         platform.ready().then(() => {
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
-            StatusBar.styleDefault();
+            StatusBar.backgroundColorByHexString("#ea8932");
+            Keyboard.disableScroll(true);
+            Splashscreen.hide();
             platform.isFullScreen = true;
 
             this.storage.get('key').then((result) => {
@@ -74,8 +77,8 @@ export class MyApp {
                     this.rootPage = LoginPage;
                 } else {
                     this._redminer.setKey(result);
-                    this.rootPage = ReportPage;
-                    // this.rootPage = SettingsPage;
+                    // this.rootPage = ReportPage;
+                    this.rootPage = ImportantIssuesPage;
                     let offset = 1;
                     if (moment().month()>=2 && moment().month()<=9) {
                         let year = moment().year();

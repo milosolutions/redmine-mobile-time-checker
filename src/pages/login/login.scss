@@ -1,12 +1,12 @@
 .logo {
   text-align: center;
-  padding: 15vh 0 8.5vh;
+  padding: 3.5rem 0 5rem;
   max-width: 45%;
   margin: auto;
 }
 
 ion-content.login-page {
-  background: url('../../img/login_bg_2.jpg') no-repeat bottom center;
+  background: url('../img/login_bg_2.jpg') no-repeat bottom center;
   background-size: cover;
   text-align: center;
 }
@@ -43,7 +43,7 @@ ion-content.login-page {
     top: -4rem;
     background: #fe0000;
     padding: 1rem;
-    color: #fff;
+    color: #f3f3f3;
     left: 50%;
     border-radius: 1rem;
     transform: translate(-50%, 0);
@@ -83,7 +83,7 @@ ion-content.login-page {
 
     &.item-input, &.item-checkbox {
       background-color: transparent;
-      color: #afb1ca;
+      color: #f3f3f3;
     }
 
     &.item-input {
@@ -119,7 +119,7 @@ ion-content.login-page {
       display: inline-block;
       .checkbox-icon {
         background-color: transparent;
-        border: 1px solid #bbb;
+        border: 1px solid #f3f3f3;
         border-radius: 0;
       }
     }
@@ -134,7 +134,7 @@ ion-content.login-page {
       }
 
       &:focus:after {
-        border-color: #bbb;
+        border-color: #f3f3f3;
       }
 
       &:after {
@@ -144,7 +144,7 @@ ion-content.login-page {
         height: 16px;
         margin-top: -2px;
         margin-right: 5px;
-        border: 1px solid #bbb;
+        border: 1px solid #f3f3f3;
         transition: 240ms;
       }
 
@@ -170,7 +170,7 @@ ion-content.login-page {
       }
 
       &:checked:before {
-        border-color: #bbb;
+        border-color: #f3f3f3;
         -ms-transform: rotate(45deg); /* IE 9 */
         -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
         transform: rotate(45deg);
@@ -213,14 +213,20 @@ ion-content.login-page {
 }
 
 .switch-login {
-  position: absolute;
-  bottom: 1vh;
-  left: 0;
+  //position: absolute;
+  //top: 90vh;
+  margin-top: 1rem;
   width: 100%;
   //margin-top: 7.5vh;
   text-align: center;
 
+  & > span {
+    color: #f3f3f3;
+    font-weight: 300;
+  }
+
   button {
+    margin-top: 1rem;
     background-color: #cbcbcb;
     text-transform: none;
     font-size: 1.15rem;

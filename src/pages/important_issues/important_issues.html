@@ -1,0 +1,76 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button icon-only menuToggle>
+            <custom-icon set="ci" name="menu3"></custom-icon>
+        </button>
+        <ion-title>
+            Important Issues
+        </ion-title>
+
+        <ion-buttons end>
+            <button ion-button icon-only (click)="refresh($event)">
+                <ion-icon name="refresh"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding class="info report-page">
+    <div class="slide-content" #gesture>
+        <div class="bg-small report-info" style="background-image: url(img/report_top.jpg)">
+            <ion-segment class="navigation">
+                <ion-segment-button (click)="prevWeek($event)" [ngClass]="{'disabled': isFirstWeek}">
+                    <ion-icon name="arrow-dropleft"></ion-icon>
+                    <span>Prev Week</span>
+                </ion-segment-button>
+                <ion-segment-button class="info">
+                    <span>Week</span>
+
+                    <div class="week">{{week}}</div>
+                    <div class="dates">{{mon.format('DD.MM') }}-{{sun.format('DD.MM') }}</div>
+                </ion-segment-button>
+                <ion-segment-button (click)="nextWeek($event)" [ngClass]="{'disabled': isLastWeek}">
+                    <ion-icon name="arrow-dropright"></ion-icon>
+                    <span>Next Week</span>
+                </ion-segment-button>
+            </ion-segment>
+            <div class="hours">
+                Total important issues:<br/>
+
+                <div>{{issues}}</div>
+            </div>
+        </div>
+    </div>
+
+
+    <div *ngIf="loading" class="loading">
+        <ion-spinner></ion-spinner>
+    </div>
+    <div *ngIf="!loading" class="loading">
+        <ion-list *ngIf="daygroups.length==7">
+            <div *ngFor="let group of daygroups">
+                <ion-item class="item-stable"
+                          *ngIf="!( (group.name == 'Sunday' || group.name == 'Saturday' ) && group.hours == 0 )"
+                          (click)="toggleGroup(group)"
+                          [ngClass]="{active: true }">
+                    <span class="day">{{group.name}}</span>
+                    <ion-icon name="arrow-dropdown" *ngIf="group.hours>0 && isGroupHidden(group)"></ion-icon>
+                    <ion-icon name="arrow-dropup" *ngIf="group.hours>0 && !isGroupHidden(group)"></ion-icon>
+                    <span class="day-hours" *ngIf="group.hours>0">{{group.hours | number : '1.1-2'}}h</span>
+                </ion-item>
+                <ion-item class="item-accordion"
+                          *ngFor="let issue of group.issues"
+                          [hidden]="isGroupHidden(group)">
+                    <div class="info">
+                        <p class="header">{{issue.subject}}<small class="{{issue.color}}">{{issue.status}}</small></p>
+                        <p>{{issue.project}}</p>
+                    </div>
+                    <div class="hours">
+                        <small class="issue-id">{{'#'+issue.id}}</small>
+                        <p>{{issue.hours | number : '1.1-2'}}h</p>
+                    </div>
+                </ion-item>
+            </div>
+        </ion-list>
+    </div>
+</ion-content>

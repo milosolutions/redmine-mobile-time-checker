@@ -28,9 +28,9 @@ export class ReportPage {
     sun: any;
 
 
-    constructor(private nav: NavController, private _redminer: RedmineApi,
-                private alertCtrl: AlertController, private storage: Storage,
-                private events: Events) {
+    constructor(protected nav: NavController, protected _redminer: RedmineApi,
+                protected alertCtrl: AlertController, protected storage: Storage,
+                protected events: Events) {
         this.entries_count = 1;
         this.week = moment().isoWeek();
         this.isLastWeek = true;
@@ -215,6 +215,7 @@ export class ReportPage {
             group.issues.forEach(issue => {
                 this._redminer.load('issues/' + issue.id + '.json', this.key).then(data => {
                     issue.subject = data.issue.subject;
+                    issue.priority = data.issue.priority.id;
                 });
             })
         });

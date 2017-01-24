@@ -1,3 +1,21 @@
+import {Pipe} from '@angular/core';
+
+@Pipe({name: 'filter_priority'})
+export class FilterPipe {
+    transform(value, filters) {
+        console.log(value, filters)
+        console.log('filtered', value.filter(obj => {
+            // console.log(obj.priority)
+            // console.log(filters)
+            if (obj.priority)
+                return obj.priority >= filters
+            else
+                return true
+        }));
+        return value.filter(obj => obj.priority >= filters);
+    }
+}
+
 export function runSettingsAlert(setting, alertCtrl, local) {
     let type = setting.name == 'vacation' ? 'date' : 'text';
     let prompt = alertCtrl.create({
