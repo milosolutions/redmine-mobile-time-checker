@@ -1,5 +1,4 @@
-import {NavController, AlertController, Events} from 'ionic-angular';
-import {Gesture} from 'ionic-angular/gestures/gesture';
+import {NavController, AlertController, Events, Slides} from 'ionic-angular';
 import {Component} from '@angular/core';
 import {Storage} from '@ionic/storage';
 import {OnInit, OnDestroy, ElementRef, ViewChild} from '@angular/core';
@@ -14,10 +13,7 @@ import * as moment from 'moment'
     providers: [RedmineApi, Storage]
 })
 export class ImportantIssuesPage {
-    @ViewChild('gesture')
-    private _slideElementRef: ElementRef;
-    private _slideElement: HTMLElement;
-    private _slideGesture: Gesture;
+    @ViewChild('slides') slides: Slides;
     key: any;
     entries_count: any;
     week: number;
@@ -29,6 +25,8 @@ export class ImportantIssuesPage {
     loading: any;
     mon: any;
     sun: any;
+    weeks: any[];
+    initialSlide: any;
 
 
     constructor(protected nav: NavController, protected _redminer: RedmineApi,
@@ -41,6 +39,18 @@ export class ImportantIssuesPage {
         this.daygroups = [];
         this.loading = true;
 
+        this.weeks = [];
+        this.initialSlide = this.week - 1;
+
+
+        for (let i = 1; i <= this.week; i++) {
+            this.weeks.push({
+                num: i,
+                mon: moment().isoWeek(i).startOf('isoWeek'),
+                sun: moment().isoWeek(i).endOf('isoWeek')
+            })
+        }
+
         for (let i = 0; i < 7; i++) {
             this.daygroups[i] = {
                 name: moment().isoWeekday(i + 1).format("dddd"),
@@ -50,8 +60,6 @@ export class ImportantIssuesPage {
             };
         }
 
-        this.mon = moment().isoWeek(this.week).startOf('isoWeek');
-        this.sun = moment().isoWeek(this.week).endOf('isoWeek');
         this.storage.get('key').then(key => this.key = key);
         this.storage.get('display-alert').then(result => {
             if (result == "true") {
@@ -66,23 +74,9 @@ export class ImportantIssuesPage {
         this.events.subscribe('menu:dragged', () => {
             console.log('menu has been dragged');
         });
-        this._slideElement = this._slideElementRef.nativeElement;
-        this._slideGesture = new Gesture(this._slideElement);
-        this._slideGesture.listen();
-
-        this._slideGesture.on('swipeleft', e => {
-            if (!this.isLastWeek) this.nextWeek(event);
-        });
-        this._slideGesture.on('swiperight', e => {
-            let calc = e.pointers[0].clientX - e.deltaX;
-            if (calc > 60) {
-                this.prevWeek(event);
-            }
-        });
     }
 
     ngOnDestroy() {
-        this._slideGesture.destroy();
     }
 
     checkLastWeekHours() {
@@ -146,10 +140,8 @@ export class ImportantIssuesPage {
         this.sun = moment().isoWeek(this.week).endOf('isoWeek');
         let mon = this.mon.format('YYYY-MM-DD');
         let sun = this.sun.format('YYYY-MM-DD');
-
         this.storage.get('user_id').then(id => {
             let url = 'time_entries.json?limit=' + this.entries_count + '&spent_on=><' + mon + '|' + sun + '&user_id=' + id;
-
             if (this.entries_count == 1) {
                 this._redminer.load(url, this.key).then(data => {
                     this.entries_count = data.total_count;
@@ -231,7 +223,7 @@ export class ImportantIssuesPage {
                             issues.push(group.id)
                         }
                     });
-                    this.issues = issues.length
+                    document.getElementById('total-' + this.week).textContent = issues.length.toString();
                 }
             });
         });
@@ -256,23 +248,36 @@ export class ImportantIssuesPage {
     };
 
     nextWeek(event) {
-        if (this.week + 1 <= moment().isoWeek())
-            this.week = this.week + 1;
-        else
-            return;
-        this.entries_count = 1;
-        this.isLastWeek = this.week == moment().isoWeek();
-        this.fetchReport();
-    }
+        // Button "Next" clicked
+        if (event.type == "click")
+            this.slides.slideNext(500);
+        else {
+            if (this.week + 1 <= moment().isoWeek())
+                this.week = this.week + 1;
+            else
+                return;
 
+            this.entries_count = 1;
+            this.isFirstWeek = false;
+            this.isLastWeek = this.week == moment().isoWeek();
+            this.fetchReport();
+        }
+    }
     prevWeek(event) {
-        if (this.week - 1 > 0)
-            this.week = this.week - 1;
-        else
-            return;
-        this.entries_count = 1;
-        this.isLastWeek = false;
-        this.isFirstWeek = this.week - 1 == 0;
-        this.fetchReport();
+        // Button "Prev" clicked
+        if (event.type == "click")
+            this.slides.slidePrev(500);
+        else {
+
+            if (this.week - 1 > 0)
+                this.week = this.week - 1;
+            else
+                return;
+
+            this.entries_count = 1;
+            this.isLastWeek = false;
+            this.isFirstWeek = this.week -1 == 0;
+            this.fetchReport();
+        }
     }
 }

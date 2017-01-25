@@ -16,29 +16,35 @@
 </ion-header>
 
 <ion-content padding class="info report-page">
-    <div class="slide-content" #gesture>
+    <div class="slide-content">
         <div class="bg-small report-info" style="background-image: url(img/report_top.jpg)">
             <ion-segment class="navigation">
                 <ion-segment-button (click)="prevWeek($event)" [ngClass]="{'disabled': isFirstWeek}">
                     <ion-icon name="arrow-dropleft"></ion-icon>
                     <span>Prev Week</span>
                 </ion-segment-button>
-                <ion-segment-button class="info">
+                <ion-segment-button class="info weeks">
                     <span>Week</span>
+					<ion-slides class="weeks-slider" [initialSlide]="initialSlide" #slides
+								(ionSlidePrevStart)="prevWeek($event)" (ionSlideNextStart)="nextWeek($event)">
+						<ion-slide *ngFor="let week of weeks">
+							<div class="week">{{week.num}}</div>
+                    		<div class="dates">{{week.mon.format('DD.MM')}}-{{week.sun.format('DD.MM') }}</div>
+							<div class="hours">
+								Total hours logged:<br/>
 
-                    <div class="week">{{week}}</div>
-                    <div class="dates">{{mon.format('DD.MM') }}-{{sun.format('DD.MM') }}</div>
+								<div id="total-{{week.num}}">0h</div>
+							</div>
+						</ion-slide>
+					</ion-slides>
+
                 </ion-segment-button>
                 <ion-segment-button (click)="nextWeek($event)" [ngClass]="{'disabled': isLastWeek}">
                     <ion-icon name="arrow-dropright"></ion-icon>
                     <span>Next Week</span>
                 </ion-segment-button>
             </ion-segment>
-            <div class="hours">
-                Total hours logged:<br/>
 
-                <div>{{hours | number : '1.0-2'}}h</div>
-            </div>
         </div>
     </div>
 

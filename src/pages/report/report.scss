@@ -41,6 +41,10 @@ ion-title {
       font-weight: 300;
       color: rgba(255, 255, 255, 0.75);
       transition: color 0.75s ease;
+      &:not(.info) {
+        flex: none;
+        width: 15%;
+      }
       &:hover {
         background: transparent;
         &:not(.disabled) {
@@ -82,6 +86,7 @@ ion-title {
     line-height: 1.15rem;
     color: #fff;
     font-weight: 300;
+    margin-top: 1.5rem;
     div {
       position: relative;
       height: 4rem;
@@ -271,4 +276,11 @@ ion-list {
       border-radius: 0;
     }
   }
+}
+ion-slides.weeks-slider .slide-zoom {
+  height: 100%;
+}
+.report-info .navigation .info.weeks.segment-button {
+  height: 16rem;
+  margin-top: 5rem;
 }

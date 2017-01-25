@@ -22,12 +22,12 @@ export class RedmineApi {
         // mobile settings
         // this.root = 'https://redmine.milosolutions.com/';
         // developer settings
-        if (navigator.platform == 'Win32')
+        if (/Win32|MacIntel/.test(navigator.platform))
             this.root = 'api/';
     }
 
     setRoot(url){
-        if (navigator.platform != 'Win32')
+        if (!/Win32|MacIntel/.test(navigator.platform))
             this.root = url;
     }
 

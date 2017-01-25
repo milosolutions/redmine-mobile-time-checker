@@ -23,22 +23,27 @@
                     <ion-icon name="arrow-dropleft"></ion-icon>
                     <span>Prev Week</span>
                 </ion-segment-button>
-                <ion-segment-button class="info">
+                <ion-segment-button class="info weeks">
                     <span>Week</span>
 
-                    <div class="week">{{week}}</div>
-                    <div class="dates">{{mon.format('DD.MM') }}-{{sun.format('DD.MM') }}</div>
+					<ion-slides class="weeks-slider" [initialSlide]="initialSlide" #slides
+								(ionSlidePrevStart)="prevWeek($event)" (ionSlideNextStart)="nextWeek($event)">
+						<ion-slide *ngFor="let week of weeks">
+							<div class="week">{{week.num}}</div>
+							<div class="dates">{{week.mon.format('DD.MM')}}-{{week.sun.format('DD.MM') }}</div>
+							<div class="hours">
+								Total important issues:<br/>
+
+                				<div id="total-{{week.num}}">0</div>
+							</div>
+						</ion-slide>
+					</ion-slides>
                 </ion-segment-button>
                 <ion-segment-button (click)="nextWeek($event)" [ngClass]="{'disabled': isLastWeek}">
                     <ion-icon name="arrow-dropright"></ion-icon>
                     <span>Next Week</span>
                 </ion-segment-button>
             </ion-segment>
-            <div class="hours">
-                Total important issues:<br/>
-
-                <div>{{issues}}</div>
-            </div>
         </div>
     </div>
 

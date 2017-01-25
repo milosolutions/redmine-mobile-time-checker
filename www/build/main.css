@@ -27528,6 +27528,13 @@ ion-title {
   transition: color 0.75s ease;
 }
 
+.report-info .navigation .segment-button:not(.info) {
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+  width: 15%;
+}
+
 .report-info .navigation .segment-button:hover {
   background: transparent;
 }
@@ -27574,6 +27581,7 @@ ion-title {
   line-height: 1.15rem;
   color: #fff;
   font-weight: 300;
+  margin-top: 1.5rem;
 }
 
 .report-info .hours div {
@@ -27777,6 +27785,15 @@ ion-list .item.item-accordion .hours .issue-id {
   border: none;
   border-bottom: 1px solid rgba(204, 204, 204, 0.35);
   border-radius: 0;
+}
+
+ion-slides.weeks-slider .slide-zoom {
+  height: 100%;
+}
+
+.report-info .navigation .info.weeks.segment-button {
+  height: 16rem;
+  margin-top: 5rem;
 }
 
 .settings {
