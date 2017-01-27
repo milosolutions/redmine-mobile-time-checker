@@ -61,7 +61,8 @@
     "cordova-plugin-calendar",
     "ionic-plugin-keyboard",
     "cordova-plugin-crosswalk-webview",
-    "cordova-plugin-datepicker"
+    "cordova-plugin-datepicker",
+    "de.appplant.cordova.plugin.local-notification"
   ],
   "cordovaPlatforms": [
     {

@@ -1,6 +1,7 @@
 import { Platform, IonicApp, MenuController, NavController, Events } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import { StatusBar, Keyboard, InAppBrowser, Splashscreen } from 'ionic-native';
+import { StatusBar, Keyboard, InAppBrowser, Splashscreen, LocalNotifications } from 'ionic-native';
+
 
 import { LoginPage } from '../pages/login/login';
 import { ReportPage } from '../pages/report/report';
@@ -91,10 +92,75 @@ export class MyApp {
                     if (moment().day() == 1 && moment().utc().hour() < 11-offset) {
                         this.storage.set('display-alert', true);
                     }
+
+                    console.log('Start addNotifications')
+                    this.addNotifications();
+                    console.log('End addNotifications')
+
                     this.loadInfo(result);
                 }
             });
         });
+    }
+
+    addNotifications() {
+        let friday = moment(new Date()).day('Friday').set({hours: 23, minutes: 0, seconds: 0}).toDate(),
+            that = this,
+            checkStatement = new Promise((resolve, reject) => {
+                console.log('start checkStatement');
+                let week = moment().isoWeek(),
+                    mon = moment().isoWeek(week).startOf('isoWeek').format('YYYY-MM-DD'),
+                    sun = moment().isoWeek(week).endOf('isoWeek').format('YYYY-MM-DD');
+                console.log('Week:', week, ' ', 'Mon:', mon, ' ', 'Sun:', sun);
+                that.storage.get('user_id').then(id => {
+                    console.log('User ID:', id);
+                    let url = 'time_entries.json?limit=100&spent_on=><' + mon + '|' + sun + '&user_id=' + id;
+                    console.log('Url:', url);
+                    that._redminer.load(url).then(data => {
+                        console.log('Received data:', data);
+                        let loggedHours = 0;
+                        data.time_entries.forEach(entry => loggedHours += entry.hours);
+                        console.log('Logged hours total:', loggedHours);
+                        that.storage.get('hours_week').then(hours => {
+                            console.log('Hours per week settings:', loggedHours);
+                            console.log('Logged hours < hours:', loggedHours);
+                            resolve(loggedHours < hours)
+                        })
+                    });
+                })
+            }),
+            fakeNotification = {
+                id: 3253,
+                firstAt: friday,
+                every: 'week',
+                sound: null
+            };
+        console.log('Next Friday:', friday);
+        LocalNotifications.schedule(fakeNotification);
+        console.log('fakeNotification scheduled');
+        LocalNotifications.on('trigger', (notification) => {
+            console.log('Notification triggered');
+            console.log('Notification id', notification.id);
+            if (notification.id == fakeNotification.id) {
+                console.log('Notification has fake id');
+                checkStatement.then(valid => {
+                    console.log('checkStatement result', valid);
+                    if (valid) {
+                        console.log('Notification pre');
+                        LocalNotifications.schedule({
+                            id: 1,
+                            title: "Test Title",
+                            text: "scheduled by fake!",
+                            // at: friday // should fire anyway
+                        });
+                        console.log('Notification post');
+                    }
+                })
+
+            }
+        });
+
+
     }
 
     openPage(page) {
